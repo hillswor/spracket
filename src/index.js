@@ -26,6 +26,18 @@ const renderer = (bikeInfo) => {
   p1.textContent = bikeInfo.frame_model;
   card.append(cardImage, p1);
   gallery.append(card);
+
+  let imageInfo = true;
+
+  cardImage.addEventListener("click", (e) => {
+    innerHTML = "";
+    cardImage.style.opacity = 0.25;
+    imageInfo = !imageInfo;
+    const p2 = document.createElement("p");
+    p2.setAttribute("class", "description");
+    p2.textContent = bikeInfo.description;
+    card.append(p2);
+  });
 };
 
 function getZipCode(response) {
@@ -33,7 +45,7 @@ function getZipCode(response) {
   const zipCode = locationObject.postal_code;
 
   fetch(
-    `https://bikeindex.org:443/api/v3/search?page=1&per_page=4&query=image&location=${zipCode}&distance=50&stolenness=proximity`
+    `https://bikeindex.org:443/api/v3/search?page=1&per_page=6&query=image&location=${zipCode}&distance=50&stolenness=proximity`
   )
     .then((response) => response.json())
     .then((stolenBikes) => {
