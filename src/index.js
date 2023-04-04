@@ -1,4 +1,4 @@
-let apiKey = "34eac09b0f8348b3912237e3325d9bd4";
+let apiKey = ;
 const url = `https://ipgeolocation.abstractapi.com/v1/?api_key=${apiKey}`;
 
 function httpGetAsync(url, callback) {
