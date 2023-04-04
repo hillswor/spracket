@@ -1,6 +1,7 @@
 let apiKey = "34eac09b0f8348b3912237e3325d9bd4";
 const url = `https://ipgeolocation.abstractapi.com/v1/?api_key=${apiKey}`;
 const gallery = document.querySelector(".gallery");
+const navDropdown = document.querySelector("#search");
 let distance = 50;
 
 function httpGetAsync(url, callback) {
@@ -191,23 +192,21 @@ function filterDateStolen(data, byKey) {
   }
 }
 
-// document.querySelector("select").addEventListener("change", (e) => {
-//   gallery.innerHTML = "";
-//   const date = "date_stolen";
-//   const brand = "manufacturer_name";
-//   const location = "stolen_location";
+navDropdown.addEventListener("change", (e) => {
+  gallery.innerHTML = "";
+  const date = "date_stolen";
+  const brand = "manufacturer_name";
+  const location = "stolen_location";
 
-//   if (e.target.value == "Date") {
-//     console.log("DATE");
-//     filterDateStolen(bikeInfo, date);
-//   }
-//   if (e.target.value == "Location") {
-//     console.log("location");
-//     filterDateStolen(bikeInfo, location);
-//   } else if (e.target.value == "Manufacturer") {
-//     console.log("manufacturer");
-//     filterDateStolen(bikeInfo, brand);
-//   }
-// });
+  if (e.target.value == "Date") {
+    console.log("date");
+    filterDateStolen(bikeInfo, date);
+  }
+  if (e.target.value == "Location") {
+    filterDateStolen(bikeInfo, location);
+  } else if (e.target.value == "Manufacturer") {
+    filterDateStolen(bikeInfo, brand);
+  }
+});
 
 httpGetAsync(url, initialize);
