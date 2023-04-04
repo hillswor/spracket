@@ -1,4 +1,4 @@
-let apiKey = ;
+let apiKey = "34eac09b0f8348b3912237e3325d9bd4";
 const url = `https://ipgeolocation.abstractapi.com/v1/?api_key=${apiKey}`;
 
 function httpGetAsync(url, callback) {
@@ -24,20 +24,22 @@ const renderer = (bikeInfo) => {
   const p1 = document.createElement("p");
   p1.setAttribute("id", "bike-name");
   p1.textContent = bikeInfo.frame_model;
-  card.append(cardImage, p1);
-  gallery.append(card);
-
-  let imageInfo = true;
-
-  cardImage.addEventListener("click", (e) => {
-    innerHTML = "";
-    cardImage.style.opacity = 0.25;
-    imageInfo = !imageInfo;
-    const p2 = document.createElement("p");
-    p2.setAttribute("class", "description");
-    p2.textContent = bikeInfo.description;
-    card.append(p2);
+  const detailsBtn = document.createElement("button");
+  detailsBtn.textContent = "DETAILS";
+  detailsBtn.addEventListener("click", () => {
+    card.innerHTML = "";
+    const viewBikeBtn = document.createElement("button");
+    viewBikeBtn.textContent = "View Bike";
+    card.appendChild(viewBikeBtn);
+    viewBikeBtn.addEventListener("click", () => {
+      renderer(bikeInfo);
+    });
   });
+
+  card.appendChild(detailsBtn);
+  card.appendChild(cardImage);
+  card.appendChild(p1);
+  gallery.appendChild(card);
 };
 
 function getZipCode(response) {
