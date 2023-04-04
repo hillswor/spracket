@@ -1,6 +1,7 @@
 let apiKey = "34eac09b0f8348b3912237e3325d9bd4";
 const url = `https://ipgeolocation.abstractapi.com/v1/?api_key=${apiKey}`;
 const gallery = document.querySelector(".gallery");
+let distance = 50;
 
 function httpGetAsync(url, callback) {
   const xmlHttp = new XMLHttpRequest();
@@ -8,7 +9,7 @@ function httpGetAsync(url, callback) {
     if (xmlHttp.readyState === 4 && xmlHttp.status === 200)
       callback(xmlHttp.responseText);
   };
-  xmlHttp.open("GET", url, true); // true for asynchronous
+  xmlHttp.open("GET", url, true);
   xmlHttp.send(null);
 }
 
@@ -93,6 +94,19 @@ function renderImgAndTitleOnClick(bike, card) {
   card.appendChild(img);
 }
 
+const sortedrenderer = (sortedData) => {
+  const card = document.createElement("div");
+  card.setAttribute("class", "card");
+  const cardImage = document.createElement("img");
+  cardImage.src = sortedData.large_img;
+  const p1 = document.createElement("p");
+  p1.setAttribute("id", "bike-name");
+  p1.textContent = sortedData.frame_model;
+  gallery.innerHTML;
+  card.append(cardImage, p1);
+  gallery.append(card);
+};
+
 function initialize(response) {
   locationObject = JSON.parse(response);
   const zipCode = locationObject.postal_code;
@@ -102,10 +116,98 @@ function initialize(response) {
   )
     .then((response) => response.json())
     .then((stolenBikes) => {
-      //   console.log(stolenBikes);
-      bikeInfo = stolenBikes.bikes.filter((x) => x.large_img);
-      bikeInfo.forEach(renderDisplayCardsOnPageLoad);
+      bikes = stolenBikes.bikes.filter(
+        (x) => x.large_img && x.title && x.description
+      );
+      bikes.length > 25
+        ? bikes.forEach((bike) => renderDisplayCardsOnPageLoad(bike))
+        : (distance = 200);
+      fetch(
+        `https://bikeindex.org:443/api/v3/search?page=1&per_page=100&query=image&location=${zipCode}&distance=${distance}&stolenness=proximity`
+      )
+        .then((response) => response.json())
+        .then((stolenBikes) => {
+          bikes = stolenBikes.bikes.filter(
+            (x) => x.large_img && x.title && x.description
+          );
+          bikes.forEach((bike) => renderDisplayCardsOnPageLoad(bike));
+        });
     });
 }
+
+function filterDateStolen(data, byKey) {
+  console.log(byKey);
+  let sortedData;
+  if (byKey === "date_stolen") {
+    sortedData = data.sort(function (a, b) {
+      let x = a.date_stolen;
+      let y = b.date_stolen;
+      if (x > y) {
+        return 1;
+      }
+      if (x < y) {
+        return -1;
+      }
+      return 0;
+    });
+    sortedData.forEach((bike) => {
+      sortedrenderer(bike);
+    });
+  }
+  if (byKey === "manufacturer_name") {
+    sortedData = data.sort(function (a, b) {
+      let x = a.manufacturer_name;
+      let y = b.manufacturer_name;
+
+      if (x > y) {
+        return 1;
+      }
+      if (x < y) {
+        return -1;
+      }
+      return 0;
+    });
+    sortedData.forEach((bike) => {
+      sortedrenderer(bike);
+    });
+  }
+  if (byKey === "stolen_location") {
+    console.log("were in the matrix");
+    sortedData = data.sort(function (a, b) {
+      let x = a.stolen_location;
+      let y = b.stolen_location;
+
+      if (x > y) {
+        return 1;
+      }
+      if (x < y) {
+        return -1;
+      }
+      return 0;
+    });
+    sortedData.forEach((bike) => {
+      sortedrenderer(bike);
+    });
+  }
+}
+
+// document.querySelector("select").addEventListener("change", (e) => {
+//   gallery.innerHTML = "";
+//   const date = "date_stolen";
+//   const brand = "manufacturer_name";
+//   const location = "stolen_location";
+
+//   if (e.target.value == "Date") {
+//     console.log("DATE");
+//     filterDateStolen(bikeInfo, date);
+//   }
+//   if (e.target.value == "Location") {
+//     console.log("location");
+//     filterDateStolen(bikeInfo, location);
+//   } else if (e.target.value == "Manufacturer") {
+//     console.log("manufacturer");
+//     filterDateStolen(bikeInfo, brand);
+//   }
+// });
 
 httpGetAsync(url, initialize);
