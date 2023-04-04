@@ -10,6 +10,7 @@ function httpGetAsync(url, callback) {
   xmlHttp.open("GET", url, true); // true for asynchronous
   xmlHttp.send(null);
 }
+
 const card = document.querySelector(".card");
 const gallery = document.querySelector(".gallery");
 let bikeInfo;
