@@ -96,18 +96,23 @@ function renderImgAndTitleOnClick(bike, card) {
   card.appendChild(img);
 }
 
-const sortedrenderer = (sortedData) => {
+function renderSortedBikes(bike) {
   const card = document.createElement("div");
   card.setAttribute("class", "card");
-  const cardImage = document.createElement("img");
-  cardImage.src = sortedData.large_img;
-  const p1 = document.createElement("p");
-  p1.setAttribute("id", "bike-name");
-  p1.textContent = sortedData.frame_model;
-  gallery.innerHTML;
-  card.append(cardImage, p1);
-  gallery.append(card);
-};
+  const img = document.createElement("img");
+  img.setAttribute("src", bike.large_img);
+  const location = document.createElement("p");
+  location.textContent = getCityAndState(bike);
+  const bikeDetails = document.createElement("button");
+  bikeDetails.textContent = "BIKE DETAILS";
+  bikeDetails.addEventListener("click", (e) => {
+    renderDetailsOnClick(bike, card);
+  });
+  card.appendChild(bikeDetails);
+  card.appendChild(location);
+  card.appendChild(img);
+  gallery.appendChild(card);
+}
 
 function initialize(response) {
   locationObject = JSON.parse(response);
@@ -138,7 +143,6 @@ function initialize(response) {
 }
 
 function filterDateStolen(data, byKey) {
-  console.log(byKey);
   let sortedData;
   if (byKey === "date_stolen") {
     sortedData = data.sort(function (a, b) {
@@ -153,7 +157,7 @@ function filterDateStolen(data, byKey) {
       return 0;
     });
     sortedData.forEach((bike) => {
-      sortedrenderer(bike);
+      renderSortedBikes(bike);
     });
   }
   if (byKey === "manufacturer_name") {
@@ -170,11 +174,10 @@ function filterDateStolen(data, byKey) {
       return 0;
     });
     sortedData.forEach((bike) => {
-      sortedrenderer(bike);
+      renderSortedBikes(bike);
     });
   }
   if (byKey === "stolen_location") {
-    console.log("were in the matrix");
     sortedData = data.sort(function (a, b) {
       let x = a.stolen_location;
       let y = b.stolen_location;
@@ -188,7 +191,7 @@ function filterDateStolen(data, byKey) {
       return 0;
     });
     sortedData.forEach((bike) => {
-      sortedrenderer(bike);
+      renderSortedBikes(bike);
     });
   }
 }
@@ -200,7 +203,6 @@ navDropdown.addEventListener("change", (e) => {
   const location = "stolen_location";
 
   if (e.target.value == "Date") {
-    console.log("date");
     filterDateStolen(bikes, date);
   }
   if (e.target.value == "Location") {
