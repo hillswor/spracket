@@ -16,12 +16,13 @@ body {
 }
 
 h3 {
+    letter-spacing: 2px;
     font-family: sans-serif;
     font-size: 30px;
     color: white;
     position: absolute;
-    top: 70px;
-    left: 600px
+    top: 10px;
+    left: 155px
 }
 
 h1 {
@@ -54,19 +55,33 @@ img:hover {
     opacity: 25%
 }
 
+select#search 
+{
+    letter-spacing: 2px;
+    height: 30px;
+    padding-left: 20px;
+    font-weight: normal;
+    background-color: white;
+    width: 150px;
+    border: solid;
+    border-color:white;
+    border-radius: 5px;
+    position: absolute;
+    top: 80px;
+    left: 75%;
+}
+
 .description {
-    z-index: auto;
     width: 100%;
     color: black;
 }
 p.description { 
-    
     margin-left: 5px;
     text-align: justify;
     line-height: 95%;
     margin-right: 5px;
     font-weight: Bold;
-    font-size: 20px;
+    font-size: 25px;
     padding-left: 20px;
     font-family: sans-serif;
     position: relative;
@@ -76,7 +91,6 @@ p.description {
     word-wrap: normal;
 
 }
-
 img {
 
     height: 300px;
@@ -87,9 +101,7 @@ img {
     overflow: hidden;
     align-items: center;
 }
-
 .textcard {
-
     margin-left: auto;
     margin-right: auto;
     font-family: sans-serif;
@@ -98,8 +110,6 @@ img {
     justify-content: left;
     height: 100px;
     width: 300px;
-
-    
 }
 .card {
     height: 300px;
@@ -109,9 +119,7 @@ img {
     box-shadow: 5px 5px 25px rgb(203, 197, 197);
     align-items: center;
 }
-
 .gallery {
-
     padding-top: 90px;
     gap: 25px;
     flex-direction: row;
@@ -124,6 +132,4 @@ img {
     flex-wrap: wrap;
     height: 500px;
     width: 90%;
-
-
 }
