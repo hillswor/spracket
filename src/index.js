@@ -3,6 +3,7 @@ const url = `https://ipgeolocation.abstractapi.com/v1/?api_key=${apiKey}`;
 const gallery = document.querySelector(".gallery");
 const navDropdown = document.querySelector("#search");
 let distance = 50;
+let bikes;
 
 function httpGetAsync(url, callback) {
   const xmlHttp = new XMLHttpRequest();
@@ -122,7 +123,7 @@ function initialize(response) {
       );
       bikes.length > 25
         ? bikes.forEach((bike) => renderDisplayCardsOnPageLoad(bike))
-        : (distance = 200);
+        : (distance = 1000);
       fetch(
         `https://bikeindex.org:443/api/v3/search?page=1&per_page=100&query=image&location=${zipCode}&distance=${distance}&stolenness=proximity`
       )
@@ -200,12 +201,12 @@ navDropdown.addEventListener("change", (e) => {
 
   if (e.target.value == "Date") {
     console.log("date");
-    filterDateStolen(bikeInfo, date);
+    filterDateStolen(bikes, date);
   }
   if (e.target.value == "Location") {
-    filterDateStolen(bikeInfo, location);
+    filterDateStolen(bikes, location);
   } else if (e.target.value == "Manufacturer") {
-    filterDateStolen(bikeInfo, brand);
+    filterDateStolen(bikes, brand);
   }
 });
 
