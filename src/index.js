@@ -266,8 +266,10 @@ function renderModal(sighting) {
   const modalImg = document.createElement('img');
   modalImg.setAttribute("src", sighting.large_img);
   modalImg.id = "modal_img";
-  const modalInfo = document.createElement("div");
-  modalInfo.className = "modal_info_div";
+  const modalInfoDiv = document.createElement("div");
+  modalInfoDiv.className = "modal_info_div";
+  const modalImgDiv = document.createElement("div");
+  modalImgDiv.id = "modal_img_div"
   const modalSerialNumber = document.createElement("p");
   const modalSerialNumberString = `Serial Number: ${sighting.serial}`;
   modalSerialNumber.textContent = modalSerialNumberString;
@@ -282,12 +284,13 @@ function renderModal(sighting) {
   modalRecentName.className = "modal_info"
   modalRecentName.textContent = `Contributor: ${sighting.sighting_name}`;
   gallery.appendChild(modalCard);
-  modalCard.appendChild(modalImg);
-  modalCard.appendChild(modalInfo)
-  modalInfo.appendChild(modalSerialNumber);
-  modalInfo.appendChild(modalRecentLocation);
-  modalInfo.appendChild(modalRecentComments);
-  modalInfo.appendChild(modalRecentName);
+  modalCard.appendChild(modalImgDiv);
+  modalImgDiv.appendChild(modalImg);
+  modalCard.appendChild(modalInfoDiv)
+  modalInfoDiv.appendChild(modalSerialNumber);
+  modalInfoDiv.appendChild(modalRecentLocation);
+  modalInfoDiv.appendChild(modalRecentComments);
+  modalInfoDiv.appendChild(modalRecentName);
   }
 
 function initialize(response) {

@@ -250,47 +250,64 @@ img {
 }
 
 #modal_card {
-   
-    margin-top: 4px;
-    width: 80%;
     height: 200px;
-    background-color: mintcream;
-    opacity: 80%;
-    border-radius: 16px;
-    box-shadow: 12px 12px 18px black;
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    margin: 5px;
+    padding: auto;
+    background-color: #d9ceb1;
+    opacity: 100%;
+    border-radius: 15px;
+    box-shadow: 5px 5px 25px rgb(0, 0, 0);
+    align-items: center;
+    box-shadow: 24px 24px 36px black;
 }
 
 .modal_info {
-    width: 200px;
+
+    width: 500px;
     font-weight: bolder;
-    margin-left: 2px;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 12px;
     font-stretch: extra-condensed;
-    padding-left: 2pxpx;
+    padding-left: auto;
+    padding-right: 12px;
     padding-top: 4px;
     font-size: 12px;   
-    text-shadow: 8px 8px 12px rgb(132, 85, 50)
+    text-align: right;
+    letter-spacing: 6px;
+    right: 20px;
+
+}
+
+#modal_img_div {
+    width: 45%;
+    height: 192px;
+    padding: auto;
 }
 
 #modal_info_div {
-    justify-content: right;
-    left: 70%;
-    height: 180px;
-    width: 200px;
-    border-radius: 8px;
+    justify-self: right;
+    height: 192px;
+    /* padding-left: 70%px; */
+    right: 20px;
+    width: 70%;
+    padding: auto;
+    background-color: #e2d7a7;
+    border-radius: 16px;
     box-shadow: 8px 8px 12px black;
-    background-color: #b03200;
-    opacity: 100%;
+    opacity: 80%;
 
 }
 
 #modal_img {
-    justify-content: left;
-    height: 160px;
-    padding: 20px;
+    height: 184px;
+    padding: auto;
+    padding-left: 3px;
     width: auto;
     opacity: 80%;
-    border-radius: 8px;
+    border-radius: 16px;
     box-shadow: 6px 6px 9px black;
-    
-
 }
