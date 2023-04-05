@@ -16,6 +16,71 @@ header {
 
 }
 
+form .back-btn {
+    width: 75px;
+    position: relative;
+    top: -29px;
+    border-radius: 30px;
+    background-color: rgb(245, 85, 57);
+    height: 30px;
+    color: white;
+    
+}
+
+form .btn {
+    background-color:rgb(245, 85, 57);
+    color: white;
+    font-weight: bold;
+    position: relative;
+    left: 100px;
+    margin-top: 10px;
+    display: block;
+    width: 100px;
+    height: 30px;
+    border-radius: 25px;
+    border-color: none;
+}
+
+
+report-form {
+    background-color: none;
+}
+
+form {
+    border-radius: 15px;
+    background-color: gray;
+    box-sizing: border-box;
+    display: block;
+    padding: 50px;
+    height: 100%;
+    width: 100%;
+}
+input {
+    position: relative;
+    border-width: .25px;
+    border-radius: 10px;;
+    margin-bottom: 20px;
+    height: 30px;
+    width: 300px;
+
+}
+
+#report {
+    box-shadow: 1px 1px 10px rgba(128, 128, 128, 0.58);
+    border-color: gray;
+    border-style: solid;
+    border-radius: 50px;
+    background-color:rgb(245, 85, 57);
+    color: white;
+    height: 30px;
+    border: none;
+    width: 200px;
+    position: relative;
+    top: -350px;
+    left: 100px;
+
+}
+
 img:hover {
     box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.585);
     
