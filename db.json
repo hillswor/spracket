@@ -86,6 +86,39 @@
       "url": "https://bikeindex.org/bikes/1157761",
       "year": null,
       "Recent Sighting": "ascqc"
+    },
+    {
+      "sighting_location": "ASDX",
+      "sighting_comments": "ADSC",
+      "sighting_name": "aSC",
+      "date_stolen": 1637485200,
+      "description": "Has Rokform phone mount on stem.  Had vinyl decals of my name, Brian Ripley, on the down tube just below water bottle cage.  You can see them in image.  They have been on for some time, so I imagine if they are removed, there would at least be some adhesive residue remaining.  Also has Shimano PD-M540 pedals (pretty sure this is the correct model number, but if not, they are a variant that looks just like them).",
+      "frame_colors": [
+        "White",
+        "Black",
+        "Red"
+      ],
+      "frame_model": "Madone 4.7",
+      "id": 1193553,
+      "is_stock_img": false,
+      "large_img": "https://files.bikeindex.org/uploads/Pu/501206/large_Photo_Sep_16__1_01_39_PM.jpg",
+      "location_found": null,
+      "manufacturer_name": "Trek",
+      "external_id": null,
+      "registry_name": null,
+      "registry_url": null,
+      "serial": "Unknown",
+      "status": "stolen",
+      "stolen": true,
+      "stolen_coordinates": [
+        30.17,
+        -97.82
+      ],
+      "stolen_location": "Austin, TX 78748, US",
+      "thumb": "https://files.bikeindex.org/uploads/Pu/501206/small_Photo_Sep_16__1_01_39_PM.jpg",
+      "title": "2009 Trek Madone 4.7",
+      "url": "https://bikeindex.org/bikes/1193553",
+      "year": 2009
     }
   ]
 }

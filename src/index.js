@@ -18,6 +18,7 @@ function httpGetAsync(url, callback) {
 
 function renderDisplayCardsOnPageLoad(bike) {
   const card = document.createElement("div");
+
   card.setAttribute("class", "card");
   const img = document.createElement("img");
   img.setAttribute("src", bike.large_img);
@@ -199,7 +200,7 @@ function createSightingObj(bike, fll, flc, fln) {
 };
     
 function postNewSighting(sightingObj) {
-  console.log(sightingObj);
+  console.log(sightingObj)
   fetch(sightings_url, {
     method: "POST",
     headers: {
@@ -209,10 +210,60 @@ function postNewSighting(sightingObj) {
   })
   .then((res) => res.json())
   .then((data) => {
-    console.log(data);
+    console.log(data)
   })
 };
-    
+
+const viewRecent = document.querySelector("#view_recent");
+viewRecent.addEventListener("click", () => {
+  gallery.innerHTML = "";
+  const header = document.querySelector("header")
+  const backToMain = document.createElement("button");
+  backToMain.className = "btn";
+  backToMain.innerText = "BACK TO MAIN";
+  header.appendChild(backToMain);
+  backToMain.addEventListener('click', function(){location.reload()});
+  fetchRecentSightings();
+})
+
+function fetchRecentSightings() {
+  fetch(sightings_url)
+  .then((res) => res.json())
+  .then((list) => {
+    list.forEach((sighting) => {
+      renderModal(sighting);
+    })
+  })
+}
+      
+function renderModal(sighting) {
+  console.log(sighting);
+  const modalMainDiv = document.createElement("div");
+  modalMainDiv.id = "modal_main";
+  const modalCard = document.createElement("div");
+  modalCard.className = "modal_div";
+  const modalImg = document.createElement('img');
+  modalImg.setAttribute("src", sighting.large_img);
+  const modalInfo = document.createElement("div");
+  modalInfo.className = "modal_info";
+  const modalSerialNumber = document.createElement("p");
+  const modalSerialNumberString = `Serial Number: ${sighting.serial}`;
+  modalSerialNumber.textContent = modalSerialNumberString;
+  const modalRecentLocation = document.createElement("p");
+  modalRecentLocation.textContent = `Recent Sighting: ${sighting.sighting_location}`
+  const modalRecentComments = document.createElement("p");
+  modalRecentComments.textContent = `Sighting COmments: ${sighting.sighting_comments}`;  
+  const modalRecentName = document.createElement("p");
+  modalRecentName.textContent = `Contributor: ${sighting.sighting_name}`;
+  gallery.appendChild(modalCard);
+  modalCard.appendChild(modalImg);
+  modalCard.appendChild(modalInfo)
+  modalInfo.appendChild(modalSerialNumber);
+  modalInfo.appendChild(modalRecentLocation);
+  modalInfo.appendChild(modalRecentComments);
+  modalInfo.appendChild(modalRecentName);
+  }
+
 function initialize(response) {
   locationObject = JSON.parse(response);
   const zipCode = locationObject.postal_code;
@@ -240,6 +291,7 @@ function initialize(response) {
         });
     });
 }
+
 
 function filterDateStolen(data, byKey) {
   let sortedData;
