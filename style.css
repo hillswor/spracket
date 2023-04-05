@@ -1,0 +1,200 @@
+header {
+    background-image: linear-gradient(
+       110deg,
+        rgb(111, 112, 112),
+        rgb(58, 58, 60)
+    );
+    text-align: left;
+    padding-top: 1px;
+    padding-left: 150px;
+    margin-top: 0;
+    margin-left: 0;
+    background-color: rgb(111, 111, 111);
+    height: 200px;
+    box-sizing: border-box;
+
+
+}
+
+form .back-btn {
+    width: 75px;
+    position: relative;
+    top: -29px;
+    border-radius: 30px;
+    background-color: rgb(245, 85, 57);
+    height: 30px;
+    color: white;
+    
+}
+
+form .btn {
+    background-color:rgb(245, 85, 57);
+    color: white;
+    font-weight: bold;
+    position: relative;
+    left: 100px;
+    margin-top: 10px;
+    display: block;
+    width: 100px;
+    height: 30px;
+    border-radius: 25px;
+    border-color: none;
+}
+
+
+report-form {
+    background-color: none;
+}
+
+form {
+    border-radius: 15px;
+    background-color: gray;
+    box-sizing: border-box;
+    display: block;
+    padding: 50px;
+    height: 100%;
+    width: 100%;
+}
+input {
+    position: relative;
+    border-width: .25px;
+    border-radius: 10px;;
+    margin-bottom: 20px;
+    height: 30px;
+    width: 300px;
+
+}
+
+#report {
+    box-shadow: 1px 1px 10px rgba(128, 128, 128, 0.58);
+    border-color: gray;
+    border-style: solid;
+    border-radius: 50px;
+    background-color:rgb(245, 85, 57);
+    color: white;
+    height: 30px;
+    border: none;
+    width: 200px;
+    position: relative;
+    top: -350px;
+    left: 100px;
+
+}
+
+img:hover {
+    box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.585);
+    
+}
+body {
+
+    margin: 0;
+    font-family: sans-serif;
+}
+
+h3 {
+    letter-spacing: 3px;
+    font-size: 30px;
+    color: white;
+    position: absolute;
+    top: 10px;
+    left: 155px;
+}
+
+h1 {
+    font-size: 90px;
+    color: white;
+
+
+}
+
+
+p {
+    vertical-align: middle;
+    line-height: 90%;
+    letter-spacing: 2px;
+    position: relative;
+    top: -200px;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    top: -325px;
+}
+
+#bike-name {
+    z-index: auto;
+    
+    text-align: center;
+    text-transform: uppercase;
+    width: 400px;
+
+    color: rgba(0, 0, 0, 0.396);
+    font-weight: bolder;
+    font-size: 23px;
+    font-style: bold;
+    background-color: rgba(255, 255, 255, 0.54);
+    position: relative;
+    top: -70px;
+    padding: 3px 0 3px 0;
+
+}
+
+
+select#search {
+    letter-spacing: 3px;
+    font-size: 18px;
+    height: 35px;
+    padding-left: 20px;
+    font-weight: bold;
+    color: white;
+    width: 150px;
+    border-color:none;
+    border-radius: 25px;
+    position: absolute;
+    top: 80px;
+    left: 82%;
+    border-color: aliceblue;
+    padding-left: 15px;
+    background-color: rgb(245, 85, 57);
+    box-shadow: 5px 5px 25px rgb(49, 49, 49);
+
+}
+
+
+
+
+
+img {
+    position: relative;
+    height: 300px;
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 5px 5px 25px rgb(203, 197, 197);
+    overflow: hidden;
+    align-items: center;
+
+}
+
+
+.card {
+    height: 300px;
+    width: 400px;
+    border-radius: 15px;
+    box-shadow: 5px 5px 25px rgb(203, 197, 197);
+    align-items: center;
+}
+.gallery {
+    padding-top: 90px;
+    gap: 25px;
+    flex-direction: row;
+    align-items: center;
+    background-color: white;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    height: 500px;
+    width: 90%;
+}
