@@ -1,5 +1,6 @@
 let apiKey = "34eac09b0f8348b3912237e3325d9bd4";
 const url = `https://ipgeolocation.abstractapi.com/v1/?api_key=${apiKey}`;
+const sightings_url = "http://localhost:3000/sightings";
 const gallery = document.querySelector(".gallery");
 const navDropdown = document.querySelector("#search");
 let distance = 50;
@@ -24,19 +25,27 @@ function renderDisplayCardsOnPageLoad(bike) {
   location.textContent = getCityAndState(bike);
   const bikeDetails = document.createElement("button");
   bikeDetails.textContent = "BIKE DETAILS";
-  bikeDetails.addEventListener("click", (e) => {
-    renderDetailsOnClick(bike, card);
-  });
+  bikeDetails.className = "btn"
+  const reportSighting = document.createElement("button");
+  reportSighting.className = "btn";
+  reportSighting.textContent = "REPORT SIGHTING";
   card.appendChild(bikeDetails);
+  card.appendChild(reportSighting); 
   card.appendChild(location);
   card.appendChild(img);
   gallery.appendChild(card);
+  bikeDetails.addEventListener("click", (e) => {
+    renderDetailsOnClick(bike, card);
+  });
+  reportSighting.addEventListener('click', (e) => {    
+    renderReportForm(bike, card);            
+  });
 }
 
 function getMonthName(monthNumber) {
   const date = new Date();
   date.setMonth(monthNumber - 1);
-
+  
   return date.toLocaleString("en-US", {
     month: "long",
   });
@@ -61,9 +70,11 @@ function getCityAndState(bike) {
 }
 
 function renderDetailsOnClick(bike, card) {
+  console.log(bike);
   card.innerHTML = "";
   const viewBikeImg = document.createElement("button");
   viewBikeImg.textContent = "VIEW IMAGE";
+  viewBikeImg.className = "btn"
   const description = document.createElement("p");
   description.textContent = bike.title;
   const serialNumber = document.createElement("p");
@@ -71,10 +82,17 @@ function renderDetailsOnClick(bike, card) {
   serialNumber.textContent = serialNumberString;
   const dateStolen = document.createElement("p");
   dateStolen.textContent = getDateStolen(bike);
+  const reportSighting = document.createElement("button");
+  reportSighting.className = "btn";
+  reportSighting.textContent = "REPORT SIGHTING";  
   viewBikeImg.addEventListener("click", (e) => {
     renderImgAndTitleOnClick(bike, card);
   });
+  reportSighting.addEventListener('click', (e) => {    
+    renderReportForm(bike, card);            
+  });
   card.appendChild(viewBikeImg);
+  card.appendChild(reportSighting);
   card.appendChild(description);
   card.appendChild(serialNumber);
   card.appendChild(dateStolen);
@@ -88,10 +106,18 @@ function renderImgAndTitleOnClick(bike, card) {
   location.textContent = getCityAndState(bike);
   const bikeDetails = document.createElement("button");
   bikeDetails.textContent = "BIKE DETAILS";
+  bikeDetails.className = "btn"
+  const reportSighting = document.createElement("button");
+  reportSighting.className = "btn";
+  reportSighting.textContent = "REPORT SIGHTING";  
   bikeDetails.addEventListener("click", (e) => {
     renderDetailsOnClick(bike, card);
   });
+  reportSighting.addEventListener('click', (e) => {    
+    renderReportForm(bike, card);            
+  });
   card.appendChild(bikeDetails);
+  card.appendChild(reportSighting);
   card.appendChild(location);
   card.appendChild(img);
 }
@@ -105,15 +131,88 @@ function renderSortedBikes(bike) {
   location.textContent = getCityAndState(bike);
   const bikeDetails = document.createElement("button");
   bikeDetails.textContent = "BIKE DETAILS";
+  bikeDetails.className = "btn"
+  const reportSighting = document.createElement("button");
+  reportSighting.className = "btn";
+  reportSighting.textContent = "REPORT SIGHTING";
   bikeDetails.addEventListener("click", (e) => {
     renderDetailsOnClick(bike, card);
   });
+  reportSighting.addEventListener('click', (e) => {    
+    renderReportForm(bike, card);            
+  });
   card.appendChild(bikeDetails);
+  card.appendChild(reportSighting);
   card.appendChild(location);
   card.appendChild(img);
   gallery.appendChild(card);
 }
 
+function renderReportForm(bike, card) {
+  card.innerHTML = "";
+  const reportFormSubmit = document.createElement("button");
+  reportFormSubmit.setAttribute = ("type", "submit");
+  reportFormSubmit.setAttribute = ("value", "submit");
+  reportFormSubmit.innerText = "SUBMIT";
+  reportFormSubmit.className = "btn";
+  const reportForm = document.createElement("form");
+  reportForm.id = "report-form";
+  const reportFormLocation = document.createElement("input");
+  reportFormLocation.type = "text";
+  reportFormLocation.id = "report_form_location";
+  reportFormLocation.placeholder = "ENTER SIGHTING LOCATION";
+  const reportFormComments = document.createElement("input");
+  reportFormComments.type = "text";
+  reportFormComments.id = "report_form_comments";
+  reportFormComments.placeholder = "ADDITIONAL COMMENTS";
+  const reportFormName = document.createElement("input");
+  reportFormName.type = "text";
+  reportFormName.id = "report_form_name";
+  reportFormName.placeholder = "NAME (optional)";
+  const bikeDetails = document.createElement("button");
+  bikeDetails.textContent = "BIKE DETAILS";
+  bikeDetails.className = "btn";
+  reportForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const fll = report_form_location.value;
+    const flc = report_form_comments.value
+    const fln = report_form_name.value
+    alert("Submission successful. Thank you.");
+    createSightingObj(bike, fll, flc, fln);
+    renderDetailsOnClick(bike, card);
+  });
+  bikeDetails.addEventListener("click", (e) => {
+    renderDetailsOnClick(bike, card);
+  });
+  card.appendChild(bikeDetails);
+  card.appendChild(reportForm);
+  reportForm.appendChild(reportFormLocation);
+  reportForm.appendChild(reportFormComments);
+  reportForm.appendChild(reportFormName);
+  reportForm.appendChild(reportFormSubmit);
+};
+
+function createSightingObj(bike, fll, flc, fln) {
+  const formObj = { sighting_location: `${fll}`, sighting_comments: `${flc}`, sighting_name: `${fln}`};
+  sightingObj = {...formObj, ...bike};
+  postNewSighting(sightingObj);
+};
+    
+function postNewSighting(sightingObj) {
+  console.log(sightingObj);
+  fetch(sightings_url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body:JSON.stringify(sightingObj)
+  })
+  .then((res) => res.json())
+  .then((data) => {
+    console.log(data);
+  })
+};
+    
 function initialize(response) {
   locationObject = JSON.parse(response);
   const zipCode = locationObject.postal_code;
