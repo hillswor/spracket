@@ -1,4 +1,4 @@
-let apiKey = "";
+let apiKey = "34eac09b0f8348b3912237e3325d9bd4";
 const url = `https://ipgeolocation.abstractapi.com/v1/?api_key=${apiKey}`;
 const gallery = document.querySelector(".gallery");
 const navDropdown = document.querySelector("#search");
@@ -16,6 +16,7 @@ function httpGetAsync(url, callback) {
 }
 
 function renderDisplayCardsOnPageLoad(bike) {
+  // gallery.innerHTML = "";
   let imageOpacity = true;
 
   const stolenLocation = document.createElement("p");
@@ -33,6 +34,10 @@ function renderDisplayCardsOnPageLoad(bike) {
 
     e.preventDefault();
     if (!imageOpacity) {
+      const reportButton = document.createElement("button");
+      reportButton.innerText = "REPORT SIGHTING";
+      reportButton.setAttribute("id", "report");
+
       const description = document.createElement("p");
       description.textContent = bike.title;
       const serialNumber = document.createElement("p");
@@ -44,11 +49,75 @@ function renderDisplayCardsOnPageLoad(bike) {
       location.textContent = getCityAndState(bike);
       e.target.style.opacity = 0.15;
       imageOpacity = false;
-
-      card.appendChild(location);
+      // card.appendChild(location);
+      card.appendChild(reportButton);
       card.appendChild(serialNumber);
       card.appendChild(dateStolen);
       card.appendChild(description);
+
+      reportButton.addEventListener("click", (e) => {
+        console.log("clicked");
+        card.innerHTML = "";
+        const returnButton = document.createElement("button");
+        returnButton.innerText = "RETURN";
+        returnButton.className = "back-btn";
+        const reportFormSubmit = document.createElement("button");
+        reportFormSubmit.setAttribute = ("type", "submit");
+        reportFormSubmit.setAttribute = ("value", "submit");
+        reportFormSubmit.innerText = "SUBMIT";
+        reportFormSubmit.className = "btn";
+        const reportForm = document.createElement("form");
+        reportForm.id = "report-form";
+        const reportFormLocation = document.createElement("input");
+        reportFormLocation.type = "text";
+        reportFormLocation.className = "field";
+        reportFormLocation.id = "report_form_location";
+        reportFormLocation.placeholder = "   ENTER SIGHTING LOCATION";
+        const reportFormComments = document.createElement("input");
+        reportFormComments.type = "text";
+        reportFormComments.className = "field";
+        reportFormComments.id = "report_form_comments";
+        reportFormComments.className = "field";
+        reportFormComments.placeholder = "   ADDITIONAL COMMENTS";
+        const reportFormName = document.createElement("input");
+        reportFormName.type = "text";
+        reportFormName.id = "report_form_name";
+        reportFormName.className = "field";
+        reportFormName.placeholder = "   NAME (optional)";
+        const bikeDetails = document.createElement("button");
+        bikeDetails.textContent = "BIKE DETAILS";
+        bikeDetails.className = "btn";
+        const location = document.createElement("p");
+        // location.setAttribute("")
+        location.textContent = getCityAndState(bike);
+        location.className = "location";
+        // card.appendChild(location);
+        card.appendChild(reportForm);
+        reportForm.appendChild(reportFormLocation);
+        reportForm.appendChild(reportFormComments);
+        reportForm.appendChild(reportFormName);
+        reportForm.appendChild(reportFormSubmit);
+        reportForm.appendChild(returnButton);
+        returnButton.addEventListener("click", (e) => {
+          card.innerHTML = "";
+          img.style.opacity = 1;
+          card.appendChild(img);
+          card.appendChild(stolenLocation);
+        });
+
+        reportForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const fll = report_form_location.value;
+          const flc = report_form_comments.value;
+          const fln = report_form_name.value;
+          alert("Submission successful. Thank you.");
+          card.innerHTML = "";
+          img.style.opacity = 1;
+          card.appendChild(img);
+          card.appendChild(stolenLocation);
+          createSightingObj(bike, fll, flc, fln);
+        });
+      });
     } else {
       card.innerHTML = "";
       e.target.style.opacity = 1;
@@ -61,6 +130,31 @@ function renderDisplayCardsOnPageLoad(bike) {
   card.appendChild(img);
   card.appendChild(stolenLocation);
   gallery.appendChild(card);
+}
+
+function createSightingObj(bike, fll, flc, fln) {
+  const formObj = {
+    sighting_location: `${fll}`,
+    sighting_comments: `${flc}`,
+    sighting_name: `${fln}`,
+  };
+  sightingObj = { ...formObj, ...bike };
+  postNewSighting(sightingObj);
+}
+
+function postNewSighting(sightingObj) {
+  console.log(sightingObj);
+  fetch(sightings_url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(sightingObj),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+    });
 }
 
 function getMonthName(monthNumber) {
@@ -92,6 +186,9 @@ function getCityAndState(bike) {
 
 function renderSortedBikes(bike) {
   let imageOpacity = true;
+  const reportButton = document.createElement("button");
+  reportButton.innerText = "REPORT SIGHTING";
+  reportButton.setAttribute("id", "report");
 
   const stolenLocation = document.createElement("p");
   stolenLocation.setAttribute("id", "bike-name");
@@ -116,11 +213,78 @@ function renderSortedBikes(bike) {
       const dateStolen = document.createElement("p");
       dateStolen.textContent = getDateStolen(bike);
       e.target.style.opacity = 0.25;
-      card.appendChild(location);
+      card.appendChild(reportButton);
+
       card.appendChild(serialNumber);
       card.appendChild(dateStolen);
       card.appendChild(description);
+
       imageOpacity = false;
+
+      reportButton.addEventListener("click", (e) => {
+        console.log("clicked");
+        card.innerHTML = "";
+        const returnButton = document.createElement("button");
+        returnButton.innerText = "RETURN";
+        returnButton.className = "back-btn";
+        const reportFormSubmit = document.createElement("button");
+        reportFormSubmit.setAttribute = ("type", "submit");
+        reportFormSubmit.setAttribute = ("value", "submit");
+        reportFormSubmit.innerText = "SUBMIT";
+        reportFormSubmit.className = "btn";
+        const reportForm = document.createElement("form");
+        reportForm.id = "report-form";
+        const reportFormLocation = document.createElement("input");
+        reportFormLocation.type = "text";
+        reportFormLocation.className = "field";
+        reportFormLocation.id = "report_form_location";
+        reportFormLocation.placeholder = "   ENTER SIGHTING LOCATION";
+        const reportFormComments = document.createElement("input");
+        reportFormComments.type = "text";
+        reportFormComments.className = "field";
+        reportFormComments.id = "report_form_comments";
+        reportFormComments.className = "field";
+        reportFormComments.placeholder = "   ADDITIONAL COMMENTS";
+        const reportFormName = document.createElement("input");
+        reportFormName.type = "text";
+        reportFormName.id = "report_form_name";
+        reportFormName.className = "field";
+        reportFormName.placeholder = "   NAME (optional)";
+        const bikeDetails = document.createElement("button");
+        bikeDetails.textContent = "BIKE DETAILS";
+        bikeDetails.className = "btn";
+        const location = document.createElement("p");
+        // location.setAttribute("")
+        location.textContent = getCityAndState(bike);
+        location.className = "location";
+        // card.appendChild(location);
+        card.appendChild(reportForm);
+        reportForm.appendChild(returnButton);
+        reportForm.appendChild(reportFormLocation);
+        reportForm.appendChild(reportFormComments);
+        reportForm.appendChild(reportFormName);
+        reportForm.appendChild(reportFormSubmit);
+
+        returnButton.addEventListener("click", (e) => {
+          card.innerHTML = "";
+          img.style.opacity = 1;
+          card.appendChild(img);
+          card.appendChild(stolenLocation);
+        });
+
+        reportForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const fll = report_form_location.value;
+          const flc = report_form_comments.value;
+          const fln = report_form_name.value;
+          alert("Submission successful. Thank you.");
+          card.innerHTML = "";
+          img.style.opacity = 1;
+          card.appendChild(img);
+          card.appendChild(stolenLocation);
+          createSightingObj(bike, fll, flc, fln);
+        });
+      });
     } else {
       card.innerHTML = "";
       card.appendChild(img);
