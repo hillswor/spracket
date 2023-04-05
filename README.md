@@ -1,7 +1,19 @@
-# Phase-1-Project
+Phase-1-Project
 
-## _Spracket_
+---
 
-User Story:
+# **_Spracket_**
 
-Spracket will enable the user to search the Bike Index API to assist in the location and retrieval of stolen/missing bicycles as well as provide the user with the option to ass their bike to the Bike Index database.
+##**_When Someone Jacks it...Spracket_**
+
+---
+
+#### _Spracket_:
+
+_Spracket_ is a compact web based app that accesses the vast database furnished by the Bike Index API.
+
+---
+
+#### _Spracket_ will:
+
+- Greet it's user with a

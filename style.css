@@ -9,7 +9,7 @@ header {
     padding-left: 150px;
     margin-top: 0;
     margin-left: 0;
-    background-color: rgb(111, 111, 111);
+    background-color: #e0a370);
     height: 200px;
     box-sizing: border-box;
 
@@ -24,6 +24,7 @@ body {
 
     margin: 0;
     font-family: sans-serif;
+    background-color: #e0a370;
 }
 
 h3 {
@@ -77,22 +78,7 @@ p {
 
 
 select#search {
-    letter-spacing: 3px;
-    font-size: 18px;
-    height: 35px;
-    padding-left: 20px;
-    font-weight: bold;
-    color: white;
-    width: 150px;
-    border-color:none;
-    border-radius: 25px;
-    position: absolute;
-    top: 80px;
-    left: 82%;
-    border-color: aliceblue;
-    padding-left: 15px;
-    background-color: rgb(245, 85, 57);
-    box-shadow: 5px 5px 25px rgb(49, 49, 49);
+
 
 }
 
@@ -111,25 +97,179 @@ img {
 
 }
 
-
 .card {
-    height: 300px;
+    height: 400px;
     width: 400px;
     border-radius: 15px;
-    box-shadow: 5px 5px 25px rgb(203, 197, 197);
+    box-shadow: 5px 5px 25px rgb(0, 0, 0);
     align-items: center;
+    box-shadow: 24px 24px 36px black;
 }
 .gallery {
     padding-top: 90px;
     gap: 25px;
     flex-direction: row;
     align-items: center;
-    background-color: white;
+    background-color: #a16b56;
     margin-left: auto;
     margin-right: auto;
     justify-content: center;
     display: flex;
     flex-wrap: wrap;
-    height: 500px;
+    height: 200%;
     width: 90%;
+    opacity: 80%;
+    border-radius: 16px;
+    box-shadow: 24px 24px 36px black;
+}
+.btn {
+    letter-spacing: 2px;
+    height: 28px;
+    font-weight: bolder;
+    background-color: #e7d8ce;
+    padding-left: 12px;
+    border: solid;
+    border-color: #a16b56;
+    border-radius: 8px;
+    font-size: x-small;
+    box-shadow: 6px 6px 10px black;
+    margin-left: 8px;
+    color: #002927;
+    padding-right: 12px;
+    margin-bottom: 3px;
+    letter-spacing: 4px;
+    opacity: 80%;
+    width: 278px;
+    top: 0px;
+    left: 75%;
+    text-align: right;
+
+}
+
+.field {
+    height: 24px;
+    width: 360px;
+    margin-left: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 8px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+}
+
+.location {
+    letter-spacing: 4px;
+    margin-left: 8px;
+    font-weight: bolder;
+    margin-bottom: 2px;
+}
+
+#view_recent {
+    position: absolute;
+    top: 60px;
+    opacity: 80%;
+    width: 220px;
+    height: 30px;
+    left: 74%;
+    box-shadow: 6px 6px 9px black;
+    background-color: #e7d8ce;
+    border-color: #a16b56;
+}
+#sprack {
+    padding-top: 10px;
+    text-shadow: 12px 12px 18px black;
+    color: #ffffff;
+    letter-spacing: 6px;
+}
+
+#when {
+    text-shadow: 8px 8px 12px black;
+    left: 8%;
+}
+
+#view_bike_image {
+    padding-top: 20px;
+}
+
+.p_info {
+    justify-content: center;
+    font-weight: bolder;
+    margin-left: 8px;
+    font-stretch: extra-condensed;
+    padding-left: 12px;
+    padding-top: 18px;
+    font-size: 16px;   
+    text-shadow: 8px 8px 12px rgb(132, 85, 50)}
+
+#subcard {
+    width: 360px;
+    height: 240px;
+    background-color: #cd6b44;
+    border-radius: 16px;
+    box-shadow: 6px 6px 9px black;
+    margin-left: 20px;
+}
+
+#modal_card {
+    height: 200px;
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    margin: 5px;
+    padding: auto;
+    background-color: #d9ceb1;
+    opacity: 100%;
+    border-radius: 15px;
+    box-shadow: 5px 5px 25px rgb(0, 0, 0);
+    align-items: center;
+    box-shadow: 24px 24px 36px black;
+}
+
+.modal_info {
+
+    width: 500px;
+    font-weight: bolder;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 12px;
+    font-stretch: extra-condensed;
+    padding-left: auto;
+    padding-right: 12px;
+    padding-top: 4px;
+    font-size: 12px;   
+    text-align: right;
+    letter-spacing: 6px;
+    right: 20px;
+
+}
+
+#modal_img_div {
+    width: 45%;
+    height: 192px;
+    padding: auto;
+}
+
+#modal_info_div {
+    justify-self: right;
+    height: 192px;
+    /* padding-left: 70%px; */
+    right: 20px;
+    width: 70%;
+    padding: auto;
+    background-color: #e2d7a7;
+    border-radius: 16px;
+    box-shadow: 8px 8px 12px black;
+    opacity: 80%;
+
+}
+
+#modal_img {
+    height: 184px;
+    padding: auto;
+    padding-left: 3px;
+    width: auto;
+    opacity: 80%;
+    border-radius: 16px;
+    box-shadow: 6px 6px 9px black;
 }
