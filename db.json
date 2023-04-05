@@ -119,6 +119,69 @@
       "title": "2009 Trek Madone 4.7",
       "url": "https://bikeindex.org/bikes/1193553",
       "year": 2009
+    },
+    {
+      "sighting_location": "SDVDA",
+      "sighting_comments": "SDVDA",
+      "sighting_name": "SDV",
+      "date_stolen": 1569092400,
+      "description": "An orange frame with black handlebars, seat and wheels (see image). Has Pinhead lock system installed. Has green  registration sticker on the frame facing upwards near the letters \"FELT,\" unless thief removed the sticker. Should still have black and gray Kryptonite U-lock locked around frame (but not around wheels), unless thief removed that too.",
+      "frame_colors": [
+        "Orange",
+        "Black"
+      ],
+      "frame_model": "Felt Verza Speed",
+      "id": 659083,
+      "is_stock_img": false,
+      "large_img": "https://files.bikeindex.org/uploads/Pu/186791/large_IMG_7568.jpeg",
+      "location_found": null,
+      "manufacturer_name": "Felt",
+      "external_id": null,
+      "registry_name": null,
+      "registry_url": null,
+      "serial": "FFT7094476",
+      "status": "stolen",
+      "stolen": true,
+      "stolen_coordinates": [
+        42.06,
+        -87.69
+      ],
+      "stolen_location": "Evanston, IL 60201, US",
+      "thumb": "https://files.bikeindex.org/uploads/Pu/186791/small_IMG_7568.jpeg",
+      "title": "2018 Felt Felt Verza Speed",
+      "url": "https://bikeindex.org/bikes/659083",
+      "year": 2018
+    },
+    {
+      "sighting_location": "asfvasdv",
+      "sighting_comments": "aSDvsdv",
+      "sighting_name": "asdvsdc",
+      "date_stolen": 1532498400,
+      "description": "Picture above is identical model to the one above with regard to the mentioned differences. (image borrowed for identification) My Trek bike looked like this one, but the handlebars are black and the seat bag was dark gray.  The Trek 930 has front disk brake, Black Mars Manitou suspension fork and Salsa brake booster on the rear brake.\r\n\r\n",
+      "frame_colors": [
+        "Black"
+      ],
+      "frame_model": "Single Track",
+      "id": 404572,
+      "is_stock_img": false,
+      "large_img": "https://files.bikeindex.org/uploads/Pu/127519/large_download_20180725_102304.jpg",
+      "location_found": null,
+      "manufacturer_name": "Trek",
+      "external_id": null,
+      "registry_name": null,
+      "registry_url": null,
+      "serial": "Unknown",
+      "status": "stolen",
+      "stolen": true,
+      "stolen_coordinates": [
+        44.88,
+        -93.03
+      ],
+      "stolen_location": "South Saint Paul, MN 55075, US",
+      "thumb": "https://files.bikeindex.org/uploads/Pu/127519/small_download_20180725_102304.jpg",
+      "title": "1993 Trek Single Track",
+      "url": "https://bikeindex.org/bikes/404572",
+      "year": 1993
     }
   ]
 }

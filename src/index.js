@@ -23,6 +23,7 @@ function renderDisplayCardsOnPageLoad(bike) {
   const img = document.createElement("img");
   img.setAttribute("src", bike.large_img);
   const location = document.createElement("p");
+  location.className = "location"
   location.textContent = getCityAndState(bike);
   const bikeDetails = document.createElement("button");
   bikeDetails.textContent = "BIKE DETAILS";
@@ -30,9 +31,9 @@ function renderDisplayCardsOnPageLoad(bike) {
   const reportSighting = document.createElement("button");
   reportSighting.className = "btn";
   reportSighting.textContent = "REPORT SIGHTING";
+  card.appendChild(location);
   card.appendChild(bikeDetails);
   card.appendChild(reportSighting); 
-  card.appendChild(location);
   card.appendChild(img);
   gallery.appendChild(card);
   bikeDetails.addEventListener("click", (e) => {
@@ -78,25 +79,35 @@ function renderDetailsOnClick(bike, card) {
   viewBikeImg.className = "btn"
   const description = document.createElement("p");
   description.textContent = bike.title;
+  description.className = "p_info"
   const serialNumber = document.createElement("p");
   const serialNumberString = `Serial Number: ${bike.serial}`;
   serialNumber.textContent = serialNumberString;
+  serialNumber.className = "p_info"
+  const location = document.createElement("p");
+  location.className = "location"
+  location.textContent = getCityAndState(bike);
   const dateStolen = document.createElement("p");
   dateStolen.textContent = getDateStolen(bike);
+  dateStolen.className = "p_info"
   const reportSighting = document.createElement("button");
   reportSighting.className = "btn";
   reportSighting.textContent = "REPORT SIGHTING";  
+  const subCard = document.createElement("div")
+  subCard.id = "subcard"
   viewBikeImg.addEventListener("click", (e) => {
     renderImgAndTitleOnClick(bike, card);
   });
   reportSighting.addEventListener('click', (e) => {    
     renderReportForm(bike, card);            
   });
+  card.appendChild(location);
   card.appendChild(viewBikeImg);
   card.appendChild(reportSighting);
-  card.appendChild(description);
-  card.appendChild(serialNumber);
-  card.appendChild(dateStolen);
+  card.appendChild(subCard);
+  subCard.appendChild(description);
+  subCard.appendChild(serialNumber);
+  subCard.appendChild(dateStolen);
 }
 
 function renderImgAndTitleOnClick(bike, card) {
@@ -117,9 +128,9 @@ function renderImgAndTitleOnClick(bike, card) {
   reportSighting.addEventListener('click', (e) => {    
     renderReportForm(bike, card);            
   });
+  card.appendChild(location);
   card.appendChild(bikeDetails);
   card.appendChild(reportSighting);
-  card.appendChild(location);
   card.appendChild(img);
 }
 
@@ -160,19 +171,26 @@ function renderReportForm(bike, card) {
   reportForm.id = "report-form";
   const reportFormLocation = document.createElement("input");
   reportFormLocation.type = "text";
+  reportFormLocation.className = "field";
   reportFormLocation.id = "report_form_location";
-  reportFormLocation.placeholder = "ENTER SIGHTING LOCATION";
+  reportFormLocation.placeholder = "   ENTER SIGHTING LOCATION";
   const reportFormComments = document.createElement("input");
   reportFormComments.type = "text";
+  reportFormComments.className = "field";
   reportFormComments.id = "report_form_comments";
-  reportFormComments.placeholder = "ADDITIONAL COMMENTS";
+  reportFormComments.className = "field";
+  reportFormComments.placeholder = "   ADDITIONAL COMMENTS";
   const reportFormName = document.createElement("input");
   reportFormName.type = "text";
   reportFormName.id = "report_form_name";
-  reportFormName.placeholder = "NAME (optional)";
+  reportFormName.className = "field";
+  reportFormName.placeholder = "   NAME (optional)";
   const bikeDetails = document.createElement("button");
   bikeDetails.textContent = "BIKE DETAILS";
   bikeDetails.className = "btn";
+  const location = document.createElement("p");
+  location.textContent = getCityAndState(bike);
+  location.className = "location"
   reportForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const fll = report_form_location.value;
@@ -185,6 +203,7 @@ function renderReportForm(bike, card) {
   bikeDetails.addEventListener("click", (e) => {
     renderDetailsOnClick(bike, card);
   });
+  card.appendChild(location)
   card.appendChild(bikeDetails);
   card.appendChild(reportForm);
   reportForm.appendChild(reportFormLocation);
@@ -220,6 +239,7 @@ viewRecent.addEventListener("click", () => {
   const header = document.querySelector("header")
   const backToMain = document.createElement("button");
   backToMain.className = "btn";
+  backToMain.id = "back_to_main"
   backToMain.innerText = "BACK TO MAIN";
   header.appendChild(backToMain);
   backToMain.addEventListener('click', function(){location.reload()});
@@ -242,18 +262,24 @@ function renderModal(sighting) {
   modalMainDiv.id = "modal_main";
   const modalCard = document.createElement("div");
   modalCard.className = "modal_div";
+  modalCard.id = "modal_card"
   const modalImg = document.createElement('img');
   modalImg.setAttribute("src", sighting.large_img);
+  modalImg.id = "modal_img";
   const modalInfo = document.createElement("div");
-  modalInfo.className = "modal_info";
+  modalInfo.className = "modal_info_div";
   const modalSerialNumber = document.createElement("p");
   const modalSerialNumberString = `Serial Number: ${sighting.serial}`;
   modalSerialNumber.textContent = modalSerialNumberString;
+  modalSerialNumber.className = "modal_info";
   const modalRecentLocation = document.createElement("p");
+  modalRecentLocation.className = "modal_info"
   modalRecentLocation.textContent = `Recent Sighting: ${sighting.sighting_location}`
   const modalRecentComments = document.createElement("p");
-  modalRecentComments.textContent = `Sighting COmments: ${sighting.sighting_comments}`;  
+  modalRecentComments.textContent = `Sighting Comments: ${sighting.sighting_comments}`;  
+  modalRecentComments.className = "modal_info";
   const modalRecentName = document.createElement("p");
+  modalRecentName.className = "modal_info"
   modalRecentName.textContent = `Contributor: ${sighting.sighting_name}`;
   gallery.appendChild(modalCard);
   modalCard.appendChild(modalImg);
