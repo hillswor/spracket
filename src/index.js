@@ -1,4 +1,4 @@
-let apiKey = "";
+let apiKey = "34eac09b0f8348b3912237e3325d9bd4";
 const url = `https://ipgeolocation.abstractapi.com/v1/?api_key=${apiKey}`;
 const gallery = document.querySelector(".gallery");
 const navDropdown = document.querySelector("#search");
@@ -39,26 +39,23 @@ function renderDisplayCardsOnPageLoad(bike) {
       dateStolen.textContent = getDateStolen(bike);
       const location = document.createElement("p");
       location.textContent = getCityAndState(bike);
-
-      console.log("card div clicked");
-
       img.style.opacity = 0.15;
       card.appendChild(location);
       card.appendChild(serialNumber);
       card.appendChild(dateStolen);
       card.appendChild(description);
-      // renderDetailsOnClick(bike, card);
       imageOpacity = true;
     } else {
       card.innerHTML = "";
+      img.style.opacity = 1;
       card.appendChild(img);
       card.appendChild(bikeName);
-      img.style.opacity = 1;
       imageOpacity = false;
     }
   });
 
-  card.append(img, bikeName);
+  card.appendChild(img);
+  card.appendChild(bikeName);
   gallery.appendChild(card);
 }
 
@@ -88,60 +85,6 @@ function getCityAndState(bike) {
   const state = parts[1].split(" ")[0];
   return `${city}, ${state}`;
 }
-
-// function renderDetailsOnClick(bike, card) {
-//   card.innerHTML = "";
-//   // const viewBikeImg = document.createElement("button");
-//   // viewBikeImg.textContent = "VIEW IMAGE";
-//   const description = document.createElement("p");
-//   description.textContent = bike.title;
-//   const serialNumber = document.createElement("p");
-//   const serialNumberString = `Serial Number: ${bike.serial}`;
-//   serialNumber.textContent = serialNumberString;
-//   const dateStolen = document.createElement("p");
-//   dateStolen.textContent = getDateStolen(bike);
-//   // img.addEventListener("click", (e) => {
-//   //   renderImgAndTitleOnClick(bike, card);
-//   // });
-//   // card.appendChild(img);
-//   card.appendChild(description);
-//   card.appendChild(serialNumber);
-//   card.appendChild(dateStolen);
-// }
-
-// function renderImgAndTitleOnClick(bike, card) {
-//   card.innerHTML = "";
-//   const img = document.createElement("img");
-//   img.setAttribute("src", bike.large_img);
-//   const location = document.createElement("p");
-//   location.textContent = getCityAndState(bike);
-//   const bikeDetails = document.createElement("button");
-//   // bikeDetails.textContent = "BIKE DETAILS";
-//   card.addEventListener("click", (e) => {
-//     renderDetailsOnClick(bike, card);
-//   });
-//   // card.appendChild(bikeDetails);
-//   card.appendChild(location);
-//   card.appendChild(img);
-// }
-
-// function renderSortedBikes(bike) {
-//   const card = document.createElement("div");
-//   card.setAttribute("class", "card");
-//   const img = document.createElement("img");
-//   img.setAttribute("src", bike.large_img);
-//   const location = document.createElement("p");
-//   location.textContent = getCityAndState(bike);
-//   const bikeDetails = document.createElement("button");
-//   bikeDetails.textContent = "BIKE DETAILS";
-//   card.addEventListener("click", (e) => {
-//     renderDetailsOnClick(bike, card);
-//   });
-//   // card.appendChild(bikeDetails);
-//   card.appendChild(location);
-//   card.appendChild(img);
-//   gallery.appendChild(card);
-// }
 
 function renderSortedBikes(bike) {
   const bikeName = document.createElement("p");
@@ -181,7 +124,7 @@ function renderSortedBikes(bike) {
     }
   });
 
-  card.append(img, bikeName);
+  card.appendChild(img), card.appendChild(bikeName);
   gallery.appendChild(card);
 }
 
