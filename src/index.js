@@ -19,7 +19,7 @@ function httpGetAsync(url, callback) {
 function renderDisplayCardsOnPageLoad(bike) {
   const bikeName = document.createElement("p");
   bikeName.setAttribute("id", "bike-name");
-  bikeName.textContent = bike.frame_model;
+  bikeName.textContent = getCityAndState(bike);
   const card = document.createElement("div");
   card.setAttribute("class", "card");
   const img = document.createElement("img");
@@ -89,7 +89,7 @@ function getCityAndState(bike) {
 function renderSortedBikes(bike) {
   const bikeName = document.createElement("p");
   bikeName.setAttribute("id", "bike-name");
-  bikeName.textContent = bike.frame_model;
+  bikeName.textContent = bike.stolen_locations;
   const card = document.createElement("div");
   card.setAttribute("class", "card");
   const img = document.createElement("img");
