@@ -1,10 +1,11 @@
-let apiKey = "34eac09b0f8348b3912237e3325d9bd4";
+let apiKey = "";
 const url = `https://ipgeolocation.abstractapi.com/v1/?api_key=${apiKey}`;
 const sightings_url = "http://localhost:3000/sightings";
 const gallery = document.querySelector(".gallery");
 const navDropdown = document.querySelector("#search");
 let distance = 50;
 let bikes;
+let imageOpacity = false;
 
 function httpGetAsync(url, callback) {
   const xmlHttp = new XMLHttpRequest();
@@ -17,6 +18,9 @@ function httpGetAsync(url, callback) {
 }
 
 function renderDisplayCardsOnPageLoad(bike) {
+  const bikeName = document.createElement("p");
+  bikeName.setAttribute("id", "bike-name");
+  bikeName.textContent = getCityAndState(bike);
   const card = document.createElement("div");
 
   card.setAttribute("class", "card");
@@ -34,7 +38,36 @@ function renderDisplayCardsOnPageLoad(bike) {
   card.appendChild(location);
   card.appendChild(bikeDetails);
   card.appendChild(reportSighting); 
+
+
+  card.addEventListener("click", (e) => {
+    e.preventDefault();
+    if (!imageOpacity) {
+      const description = document.createElement("p");
+      description.textContent = bike.title;
+      const serialNumber = document.createElement("p");
+      const serialNumberString = `Serial Number: ${bike.serial}`;
+      serialNumber.textContent = serialNumberString;
+      const dateStolen = document.createElement("p");
+      dateStolen.textContent = getDateStolen(bike);
+      const location = document.createElement("p");
+      location.textContent = getCityAndState(bike);
+      img.style.opacity = 0.15;
+      card.appendChild(location);
+      card.appendChild(serialNumber);
+      card.appendChild(dateStolen);
+      card.appendChild(description);
+      imageOpacity = true;
+    } else {
+      card.innerHTML = "";
+      img.style.opacity = 1;
+      card.appendChild(img);
+      card.appendChild(bikeName);
+      imageOpacity = false;
+    }
+  });
   card.appendChild(img);
+  card.appendChild(bikeName);
   gallery.appendChild(card);
   bikeDetails.addEventListener("click", (e) => {
     renderDetailsOnClick(bike, card);
@@ -135,6 +168,9 @@ function renderImgAndTitleOnClick(bike, card) {
 }
 
 function renderSortedBikes(bike) {
+  const bikeName = document.createElement("p");
+  bikeName.setAttribute("id", "bike-name");
+  bikeName.textContent = bike.stolen_locations;
   const card = document.createElement("div");
   card.setAttribute("class", "card");
   const img = document.createElement("img");
@@ -157,6 +193,35 @@ function renderSortedBikes(bike) {
   card.appendChild(reportSighting);
   card.appendChild(location);
   card.appendChild(img);
+
+  card.addEventListener("click", (e) => {
+    e.preventDefault();
+    if (!imageOpacity) {
+      const description = document.createElement("p");
+      description.textContent = bike.title;
+      const serialNumber = document.createElement("p");
+      const serialNumberString = `Serial Number: ${bike.serial}`;
+      serialNumber.textContent = serialNumberString;
+      const dateStolen = document.createElement("p");
+      dateStolen.textContent = getDateStolen(bike);
+      console.log("card div clicked");
+      img.style.opacity = 0.25;
+      card.appendChild(location);
+      card.appendChild(serialNumber);
+      card.appendChild(dateStolen);
+      card.appendChild(description);
+      // renderDetailsOnClick(bike, card);
+      imageOpacity = true;
+    } else {
+      card.innerHTML = "";
+      card.appendChild(img);
+      card.appendChild(bikeName);
+      img.style.opacity = 1;
+      imageOpacity = false;
+    }
+  });
+
+  card.appendChild(img), card.appendChild(bikeName);
   gallery.appendChild(card);
 }
 
@@ -305,9 +370,11 @@ function initialize(response) {
       bikes = stolenBikes.bikes.filter(
         (x) => x.large_img && x.title && x.description
       );
+      console.log(bikes);
+
       bikes.length > 25
         ? bikes.forEach((bike) => renderDisplayCardsOnPageLoad(bike))
-        : (distance = 1000);
+        : (distance = 100);
       fetch(
         `https://bikeindex.org:443/api/v3/search?page=1&per_page=100&query=image&location=${zipCode}&distance=${distance}&stolenness=proximity`
       )
@@ -328,10 +395,10 @@ function filterDateStolen(data, byKey) {
     sortedData = data.sort(function (a, b) {
       let x = a.date_stolen;
       let y = b.date_stolen;
-      if (x > y) {
+      if (x < y) {
         return 1;
       }
-      if (x < y) {
+      if (x > y) {
         return -1;
       }
       return 0;
@@ -377,6 +444,8 @@ function filterDateStolen(data, byKey) {
 }
 
 navDropdown.addEventListener("change", (e) => {
+  e.preventDefault();
+
   gallery.innerHTML = "";
   const date = "date_stolen";
   const brand = "manufacturer_name";

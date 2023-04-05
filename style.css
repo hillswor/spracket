@@ -1,10 +1,9 @@
 header {
-    /* background-image: linear-gradient(
-        180deg,
-        rgb(90, 89, 89),
-        rgb(134, 134, 134)
-    ); */
-    background-color: linear-gradient(#002927, #e2d7a7);
+    background-image: linear-gradient(
+       110deg,
+        rgb(111, 112, 112),
+        rgb(58, 58, 60)
+    );
     text-align: left;
     padding-top: 1px;
     padding-left: 150px;
@@ -13,16 +12,23 @@ header {
     background-color: #e0a370);
     height: 200px;
     box-sizing: border-box;
+
+
 }
 
+img:hover {
+    box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.585);
+    
+}
 body {
+
     margin: 0;
     font-family: sans-serif;
     background-color: #e0a370;
 }
 
 h3 {
-    letter-spacing: 2px;
+    letter-spacing: 3px;
     font-size: 30px;
     color: white;
     position: absolute;
@@ -31,113 +37,69 @@ h3 {
 }
 
 h1 {
-    font-size: 80px;
+    font-size: 90px;
     color: white;
+
+
 }
 
-p#bike-name {
+
+p {
+    vertical-align: middle;
+    line-height: 90%;
+    letter-spacing: 2px;
+    position: relative;
+    top: -200px;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    top: -325px;
+}
+
+#bike-name {
+    z-index: auto;
+    
     text-align: center;
     text-transform: uppercase;
-    margin-top: auto;
-    padding-left: 0;
-    width: 100%;
-    height: 30px;
+    width: 400px;
+
     color: rgba(0, 0, 0, 0.396);
     font-weight: bolder;
-    font-size: 25px;
+    font-size: 23px;
     font-style: bold;
-    position: relative;
-    bottom: 50px;
     background-color: rgba(255, 255, 255, 0.54);
-    border-radius: 0px 5px 5px 0px;
+    position: relative;
+    top: -70px;
+    padding: 3px 0 3px 0;
+
 }
-img:hover {
-    opacity: 25%;
-}
+
 
 select#search {
-    letter-spacing: 2px;
-    height: 28px;
-    width: 150px;
-    letter-spacing: 4px;
-    position: absolute;
-    top: 100px;
-    left: 75%;
-    font-weight: bolder;
-    padding-left: 12px;
-    border: solid;
-    background-color: #e7d8ce;
-    border-color: #a16b56;
-    border-radius: 8px;
-    font-size: x-small;
-    box-shadow: 6px 6px 10px black;
-    opacity: 80%;
+
+
 }
 
-#back_to_main {
-    letter-spacing: 2px;
-    height: 28px;
-    width: 200px;
-    letter-spacing: 4px;
-    position: absolute;
-    top: 140px;
-    left: 74%;
-    margin-right: 12px;
-    font-weight: bolder;
-    padding-left: 12px;
-    border: solid;
-    background-color: #e7d8ce;
-    border-color: #a16b56;
-    border-radius: 8px;
-    font-size: x-small;
-    box-shadow: 6px 6px 10px black;
-    opacity: 80%;
-}
 
-.description {
-    width: 100%;
-    color: black;
-}
 
-p.description {
-    margin-left: 5px;
-    text-align: justify;
-    line-height: 95%;
-    margin-right: 5px;
-    font-weight: Bold;
-    font-size: 25px;
-    padding-left: 20px;
+
+
+img {
     position: relative;
     height: 300px;
-    width: 350px;
-    top: -290px;
-    word-wrap: normal;
-}
-img {
-    height: 300px;
-    width: 400px;
-    background-color: rgb(205, 186, 186);
+    width: 100%;
     border-radius: 15px;
     box-shadow: 5px 5px 25px rgb(203, 197, 197);
     overflow: hidden;
     align-items: center;
+
 }
-.textcard {
-    margin-left: auto;
-    margin-right: auto;
-    font-size: 20px;
-    background-color: #e0a370;
-    justify-content: left;
-    height: 100px;
-    width: 300px;
-}
+
 .card {
     height: 400px;
     width: 400px;
-    margin: 5px;
-    padding: auto;
-    background-color: #dec584;
-    opacity: 100%;
     border-radius: 15px;
     box-shadow: 5px 5px 25px rgb(0, 0, 0);
     align-items: center;
