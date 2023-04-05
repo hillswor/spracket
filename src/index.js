@@ -2,6 +2,7 @@ let apiKey = "34eac09b0f8348b3912237e3325d9bd4";
 const url = `https://ipgeolocation.abstractapi.com/v1/?api_key=${apiKey}`;
 const gallery = document.querySelector(".gallery");
 const navDropdown = document.querySelector("#search");
+const sightings_url = "http://localhost:3000/sightings";
 let distance = 50;
 let bikes;
 
@@ -16,7 +17,6 @@ function httpGetAsync(url, callback) {
 }
 
 function renderDisplayCardsOnPageLoad(bike) {
-  // gallery.innerHTML = "";
   let imageOpacity = true;
 
   const stolenLocation = document.createElement("p");
@@ -49,7 +49,6 @@ function renderDisplayCardsOnPageLoad(bike) {
       location.textContent = getCityAndState(bike);
       e.target.style.opacity = 0.15;
       imageOpacity = false;
-      // card.appendChild(location);
       card.appendChild(reportButton);
       card.appendChild(serialNumber);
       card.appendChild(dateStolen);
@@ -88,10 +87,8 @@ function renderDisplayCardsOnPageLoad(bike) {
         bikeDetails.textContent = "BIKE DETAILS";
         bikeDetails.className = "btn";
         const location = document.createElement("p");
-        // location.setAttribute("")
         location.textContent = getCityAndState(bike);
         location.className = "location";
-        // card.appendChild(location);
         card.appendChild(reportForm);
         reportForm.appendChild(reportFormLocation);
         reportForm.appendChild(reportFormComments);
@@ -254,10 +251,8 @@ function renderSortedBikes(bike) {
         bikeDetails.textContent = "BIKE DETAILS";
         bikeDetails.className = "btn";
         const location = document.createElement("p");
-        // location.setAttribute("")
         location.textContent = getCityAndState(bike);
         location.className = "location";
-        // card.appendChild(location);
         card.appendChild(reportForm);
         reportForm.appendChild(returnButton);
         reportForm.appendChild(reportFormLocation);
@@ -310,11 +305,10 @@ function initialize(response) {
       bikes = stolenBikes.bikes.filter(
         (x) => x.large_img && x.title && x.description
       );
-      console.log(bikes);
 
       bikes.length > 25
         ? bikes.forEach((bike) => renderDisplayCardsOnPageLoad(bike))
-        : (distance = 100);
+        : (distance = 1000);
       fetch(
         `https://bikeindex.org:443/api/v3/search?page=1&per_page=100&query=image&location=${zipCode}&distance=${distance}&stolenness=proximity`
       )
