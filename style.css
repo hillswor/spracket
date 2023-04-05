@@ -1,8 +1,8 @@
 header {
     background-image: linear-gradient(
-       120deg,
-        rgb(112, 112, 112),
-        rgb(33, 33, 33)
+       110deg,
+        rgb(111, 112, 112),
+        rgb(58, 58, 60)
     );
     text-align: left;
     padding-top: 1px;
@@ -16,8 +16,10 @@ header {
 
 }
 
-
-
+img:hover {
+    box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.585);
+    
+}
 body {
     margin: 0;
     font-family: sans-serif;
@@ -73,14 +75,9 @@ p {
 }
 
 
-
-img:hover {
-    opacity: 25%;
-}
-
 select#search {
     letter-spacing: 3px;
-    font-size: 20px;
+    font-size: 18px;
     height: 35px;
     padding-left: 20px;
     font-weight: bold;
@@ -92,8 +89,8 @@ select#search {
     top: 80px;
     left: 82%;
     border-color: aliceblue;
-    padding-left: 25px;
-    background-color: rgb(246, 117, 77);
+    padding-left: 15px;
+    background-color: rgb(245, 85, 57);
     box-shadow: 5px 5px 25px rgb(49, 49, 49);
 
 }

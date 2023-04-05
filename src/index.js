@@ -27,7 +27,7 @@ function renderDisplayCardsOnPageLoad(bike) {
   const location = document.createElement("p");
   location.textContent = getCityAndState(bike);
 
-  img.addEventListener("click", (e) => {
+  card.addEventListener("click", (e) => {
     e.preventDefault();
     if (!imageOpacity) {
       const description = document.createElement("p");
@@ -166,6 +166,7 @@ function renderSortedBikes(bike) {
       dateStolen.textContent = getDateStolen(bike);
       console.log("card div clicked");
       img.style.opacity = 0.25;
+      card.appendChild(location);
       card.appendChild(serialNumber);
       card.appendChild(dateStolen);
       card.appendChild(description);
@@ -173,7 +174,8 @@ function renderSortedBikes(bike) {
       imageOpacity = true;
     } else {
       card.innerHTML = "";
-      card.append(img, bikeName);
+      card.appendChild(img);
+      card.appendChild(bikeName);
       img.style.opacity = 1;
       imageOpacity = false;
     }
@@ -219,10 +221,10 @@ function filterDateStolen(data, byKey) {
     sortedData = data.sort(function (a, b) {
       let x = a.date_stolen;
       let y = b.date_stolen;
-      if (x > y) {
+      if (x < y) {
         return 1;
       }
-      if (x < y) {
+      if (x > y) {
         return -1;
       }
       return 0;
