@@ -1,8 +1,8 @@
 header {
     background-image: linear-gradient(
-        180deg,
-        rgb(90, 89, 89),
-        rgb(134, 134, 134)
+       120deg,
+        rgb(112, 112, 112),
+        rgb(33, 33, 33)
     );
     text-align: left;
     padding-top: 1px;
@@ -12,7 +12,11 @@ header {
     background-color: rgb(111, 111, 111);
     height: 200px;
     box-sizing: border-box;
+
+
 }
+
+
 
 body {
     margin: 0;
@@ -20,7 +24,7 @@ body {
 }
 
 h3 {
-    letter-spacing: 2px;
+    letter-spacing: 3px;
     font-size: 30px;
     color: white;
     position: absolute;
@@ -29,86 +33,90 @@ h3 {
 }
 
 h1 {
-    font-size: 80px;
+    font-size: 90px;
     color: white;
+
+
 }
 
-p#bike-name {
+
+p {
+    vertical-align: middle;
+    line-height: 90%;
+    letter-spacing: 2px;
+    position: relative;
+    top: -200px;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    top: -325px;
+}
+
+#bike-name {
+    z-index: auto;
+    
     text-align: center;
     text-transform: uppercase;
-    margin-top: auto;
-    padding-left: 0;
-    width: 100%;
-    height: 30px;
+    width: 400px;
+
     color: rgba(0, 0, 0, 0.396);
     font-weight: bolder;
-    font-size: 25px;
+    font-size: 23px;
     font-style: bold;
-    position: relative;
-    bottom: 50px;
     background-color: rgba(255, 255, 255, 0.54);
-    border-radius: 0px 5px 5px 0px;
+    position: relative;
+    top: -70px;
+    padding: 3px 0 3px 0;
+
 }
+
+
+
 img:hover {
     opacity: 25%;
 }
 
 select#search {
-    letter-spacing: 2px;
-    height: 30px;
+    letter-spacing: 3px;
+    font-size: 20px;
+    height: 35px;
     padding-left: 20px;
-    font-weight: normal;
-    background-color: white;
+    font-weight: bold;
+    color: white;
     width: 150px;
-    border: solid;
-    border-color: white;
-    border-radius: 5px;
+    border-color:none;
+    border-radius: 25px;
     position: absolute;
     top: 80px;
-    left: 75%;
+    left: 82%;
+    border-color: aliceblue;
+    padding-left: 25px;
+    background-color: rgb(246, 117, 77);
+    box-shadow: 5px 5px 25px rgb(49, 49, 49);
+
 }
 
-.description {
-    width: 100%;
-    color: black;
-}
 
-p.description {
-    margin-left: 5px;
-    text-align: justify;
-    line-height: 95%;
-    margin-right: 5px;
-    font-weight: Bold;
-    font-size: 25px;
-    padding-left: 20px;
+
+
+
+img {
     position: relative;
     height: 300px;
-    width: 350px;
-    top: -290px;
-    word-wrap: normal;
-}
-img {
-    height: 300px;
-    width: 400px;
-    background-color: rgb(205, 186, 186);
+    width: 100%;
     border-radius: 15px;
     box-shadow: 5px 5px 25px rgb(203, 197, 197);
     overflow: hidden;
     align-items: center;
+
 }
-.textcard {
-    margin-left: auto;
-    margin-right: auto;
-    font-size: 20px;
-    background-color: white;
-    justify-content: left;
-    height: 100px;
-    width: 300px;
-}
+
+
 .card {
     height: 300px;
     width: 400px;
-    background-color: white;
     border-radius: 15px;
     box-shadow: 5px 5px 25px rgb(203, 197, 197);
     align-items: center;
