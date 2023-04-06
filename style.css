@@ -20,7 +20,7 @@ form .back-btn {
     position: relative;
     top: -29px;
     border-radius: 25px;
-    background-color: rgb(245, 85, 57);
+    background-color: rgb(95, 95, 95);
     height: 30px;
     color: white;
     border-color: white;
@@ -165,7 +165,7 @@ select.hidden{
     border-width: 1px;
     border-radius: 25px;
     position: relative;
-    top: -150px;
+    top: -160px;
     left: 75%;
     border-color: aliceblue;
     padding-left: 15px;

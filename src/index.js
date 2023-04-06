@@ -1,4 +1,4 @@
-let apiKey = "";
+let apiKey = "34eac09b0f8348b3912237e3325d9bd4";
 const url = `https://ipgeolocation.abstractapi.com/v1/?api_key=${apiKey}`;
 const gallery = document.querySelector(".gallery");
 const navDropdown = document.querySelector("#search");
@@ -216,7 +216,6 @@ function renderSortedBikes(bike) {
       dateStolen.textContent = getDateStolen(bike);
       e.target.style.opacity = 0.25;
       card.appendChild(reportButton);
-
       card.appendChild(serialNumber);
       card.appendChild(dateStolen);
       card.appendChild(description);
@@ -261,11 +260,11 @@ function renderSortedBikes(bike) {
         location.className = "location";
         // card.appendChild(location);
         card.appendChild(reportForm);
-        reportForm.appendChild(returnButton);
         reportForm.appendChild(reportFormLocation);
         reportForm.appendChild(reportFormComments);
         reportForm.appendChild(reportFormName);
         reportForm.appendChild(reportFormSubmit);
+        reportForm.appendChild(returnButton);
 
         returnButton.addEventListener("click", (e) => {
           card.innerHTML = "";
