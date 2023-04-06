@@ -30,6 +30,38 @@
       "title": "2022 Trek FX1 Medium",
       "url": "https://bikeindex.org/bikes/1455995",
       "year": 2022
+    },
+    {
+      "sighting_location": "fadsfdas",
+      "sighting_comments": "fdsafdas",
+      "sighting_name": "fdasfdsa",
+      "date_stolen": 1662267600,
+      "description": "This bike has a custom ultegra brake/shifters as well as an upright brake. It also has a Specialized Power saddle. I am using a stock image because it was stolen in the past week from my apartment building ~9/2-9/9.",
+      "frame_colors": [
+        "Black",
+        "Blue"
+      ],
+      "frame_model": "CAADX",
+      "id": 1396204,
+      "is_stock_img": false,
+      "large_img": "https://files.bikeindex.org/uploads/Pu/634657/large_f92ce056-4fa3-4bfe-afb8-77f8a97b7217.jpg",
+      "location_found": null,
+      "manufacturer_name": "Cannondale",
+      "external_id": null,
+      "registry_name": null,
+      "registry_url": null,
+      "serial": "CM32180",
+      "status": "stolen",
+      "stolen": true,
+      "stolen_coordinates": [
+        45.48,
+        -122.64
+      ],
+      "stolen_location": "Portland, OR 97202, US",
+      "thumb": "https://files.bikeindex.org/uploads/Pu/634657/small_f92ce056-4fa3-4bfe-afb8-77f8a97b7217.jpg",
+      "title": "2015 Cannondale CAADX",
+      "url": "https://bikeindex.org/bikes/1396204",
+      "year": 2015
     }
   ]
 }

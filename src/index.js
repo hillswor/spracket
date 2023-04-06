@@ -146,7 +146,7 @@ function createSightingObj(bike, fll, flc, fln) {
 
 function postNewSighting(sightingObj) {
   console.log(sightingObj);
-  fetch(sightings_url, {
+  fetch("http://localhost:3000/sightings", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
