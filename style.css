@@ -152,7 +152,8 @@ p {
 }
 
 
-select#search {
+select.hidden{
+    display: block;
     letter-spacing: 3px;
     font-size: 18px;
     height: 35px;
@@ -163,15 +164,17 @@ select#search {
     border-color:white;
     border-width: 1px;
     border-radius: 25px;
-    position: absolute;
-    top: 80px;
-    left: 82%;
+    position: relative;
+    top: -150px;
+    left: 75%;
     border-color: aliceblue;
     padding-left: 15px;
     background-color: rgb(245, 85, 57);
     box-shadow: 5px 5px 25px rgb(49, 49, 49);
-
+    margin-bottom: 5px;
 }
+
+
 
 
 

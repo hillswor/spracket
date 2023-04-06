@@ -1,10 +1,11 @@
-let apiKey = "";
+let apiKey = "34eac09b0f8348b3912237e3325d9bd4";
 const url = `https://ipgeolocation.abstractapi.com/v1/?api_key=${apiKey}`;
 const gallery = document.querySelector(".gallery");
 const navDropdown = document.querySelector("#search");
-const sightings_url = "http://localhost:3000/sightings";
+const navDropdown2 = document.querySelector("#search2");
 let distance = 50;
 let bikes;
+let zipCode;
 
 function httpGetAsync(url, callback) {
   const xmlHttp = new XMLHttpRequest();
@@ -17,6 +18,7 @@ function httpGetAsync(url, callback) {
 }
 
 function renderDisplayCardsOnPageLoad(bike) {
+  // gallery.innerHTML = "";
   let imageOpacity = true;
 
   const stolenLocation = document.createElement("p");
@@ -49,6 +51,7 @@ function renderDisplayCardsOnPageLoad(bike) {
       location.textContent = getCityAndState(bike);
       e.target.style.opacity = 0.15;
       imageOpacity = false;
+      // card.appendChild(location);
       card.appendChild(reportButton);
       card.appendChild(serialNumber);
       card.appendChild(dateStolen);
@@ -87,8 +90,10 @@ function renderDisplayCardsOnPageLoad(bike) {
         bikeDetails.textContent = "BIKE DETAILS";
         bikeDetails.className = "btn";
         const location = document.createElement("p");
+        // location.setAttribute("")
         location.textContent = getCityAndState(bike);
         location.className = "location";
+        // card.appendChild(location);
         card.appendChild(reportForm);
         reportForm.appendChild(reportFormLocation);
         reportForm.appendChild(reportFormComments);
@@ -251,8 +256,10 @@ function renderSortedBikes(bike) {
         bikeDetails.textContent = "BIKE DETAILS";
         bikeDetails.className = "btn";
         const location = document.createElement("p");
+        // location.setAttribute("")
         location.textContent = getCityAndState(bike);
         location.className = "location";
+        // card.appendChild(location);
         card.appendChild(reportForm);
         reportForm.appendChild(returnButton);
         reportForm.appendChild(reportFormLocation);
@@ -295,7 +302,7 @@ function renderSortedBikes(bike) {
 
 function initialize(response) {
   locationObject = JSON.parse(response);
-  const zipCode = locationObject.postal_code;
+  zipCode = locationObject.postal_code;
 
   fetch(
     `https://bikeindex.org:443/api/v3/search?page=1&per_page=50&query=image&location=${zipCode}&distance=50&stolenness=proximity`
@@ -305,10 +312,11 @@ function initialize(response) {
       bikes = stolenBikes.bikes.filter(
         (x) => x.large_img && x.title && x.description
       );
+      console.log(bikes);
 
       bikes.length > 25
         ? bikes.forEach((bike) => renderDisplayCardsOnPageLoad(bike))
-        : (distance = 1000);
+        : (distance = 100);
       fetch(
         `https://bikeindex.org:443/api/v3/search?page=1&per_page=100&query=image&location=${zipCode}&distance=${distance}&stolenness=proximity`
       )
@@ -393,5 +401,46 @@ navDropdown.addEventListener("change", (e) => {
     filterDateStolen(bikes, brand);
   }
 });
+
+navDropdown2.addEventListener("change", (e) => {
+  e.preventDefault();
+
+  gallery.innerHTML = "";
+
+  if (e.target.value == 10) {
+    console.log("HEY!");
+    distance = e.target.value;
+    extendSearchRadius();
+  }
+
+  if (e.target.value == 100) {
+    console.log("HEY!");
+    distance = e.target.value;
+    extendSearchRadius();
+  }
+  if (e.target.value == 200) {
+    console.log("YO");
+    distance = e.target.value;
+    extendSearchRadius();
+  } else if (e.target.value == 500) {
+    console.log("BIG 500");
+    distance = e.target.value;
+    extendSearchRadius();
+  }
+});
+
+const extendSearchRadius = () => {
+  fetch(
+    `https://bikeindex.org:443/api/v3/search?page=1&per_page=100&query=image&location=${zipCode}&distance=${distance}&stolenness=proximity`
+  )
+    .then((response) => response.json())
+    .then((stolenBikes) => {
+      bikes = stolenBikes.bikes.filter(
+        (x) => x.large_img && x.title && x.description
+      );
+      console.log(bikes);
+      bikes.forEach((bike) => renderDisplayCardsOnPageLoad(bike));
+    });
+};
 
 httpGetAsync(url, initialize);
