@@ -112,7 +112,6 @@ function renderDisplayCardsOnPageLoad(bike) {
           const fll = report_form_location.value;
           const flc = report_form_comments.value;
           const fln = report_form_name.value;
-          alert("Submission successful. Thank you.");
           card.innerHTML = "";
           img.style.opacity = 1;
           card.appendChild(img);
@@ -156,6 +155,14 @@ function postNewSighting(sightingObj) {
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
+      if(data.sighting_name === "") {
+        alert(`Success! Spracket thanks you. Your ${data.sighting_location} sighting has been added.`)
+      }else if(data.sighting_name !== "") {
+        alert(`Success! Spracket thanks you, ${data.sighting_name}. Your ${data.sighting_location} sighting has been added.`)
+      }
+    })
+    .catch((error) =>  {console.error(error);
+      alert("Spracket apologizes! Your sighting could not be added at this time")
     });
 }
 
@@ -443,3 +450,20 @@ const extendSearchRadius = () => {
 };
 
 httpGetAsync(url, initialize);
+
+
+
+
+
+///////////////////////////////////////////////////////
+/////////////////////////////////////////////////////
+////                                          ////
+////  WHEN SOMEONE JACKS IT...               ////
+////     ____                       _       ////    
+////    / ___| _ __  _ __ __ _  ___| | _____| |_ 
+////    \___ \| '_ \| '__/ _` |/ __| |/ / _ | __|
+////     ___) | |_) | | | (_| | (__|   |  __| |_ 
+////    |____/| .__/|_|  \__,_|\___|_|\_\___|\__|
+////          |_|                      ////
+/////////////////////////////////////////////
+//////////////////////////////////////////////
