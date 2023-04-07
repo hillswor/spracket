@@ -31,7 +31,7 @@ The user can submit a sightings report to be added to a selected bike profile on
 </br></br></br></br>
 </br></br></br></br>
 
-_"A biker who rode every day,<br>
+_"A biker who rode every day,_<br>
 _Had their bike snatched and carried away,_<br>
 _They searched high and low,_<br>
 _And their heart sank - OH NO!_<br>
