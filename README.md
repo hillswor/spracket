@@ -35,6 +35,6 @@ _"A biker who rode every day,
 Had their bike snatched and carried away,
 They searched high and low,
 And their heart sank - OH NO!
-Till they met **Spracket** and shouted "hooray!"_
+Till they met **Spracket** and shouted "hooray!"_      -_ChatGPT_, 2023
 
 ---
