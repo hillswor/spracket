@@ -1,9 +1,9 @@
-let apiKey = "";
+let apiKey = "34eac09b0f8348b3912237e3325d9bd4";
 const url = `https://ipgeolocation.abstractapi.com/v1/?api_key=${apiKey}`;
 const gallery = document.querySelector(".gallery");
 const navDropdown = document.querySelector("#search");
 const navDropdown2 = document.querySelector("#search2");
-let distance = 50;
+let distance = 10;
 let bikes;
 let zipCode;
 
@@ -18,7 +18,6 @@ function httpGetAsync(url, callback) {
 }
 
 function renderDisplayCardsOnPageLoad(bike) {
-  // gallery.innerHTML = "";
   let imageOpacity = true;
 
   const stolenLocation = document.createElement("p");
@@ -51,7 +50,7 @@ function renderDisplayCardsOnPageLoad(bike) {
       location.textContent = getCityAndState(bike);
       e.target.style.opacity = 0.15;
       imageOpacity = false;
-      // card.appendChild(location);
+
       card.appendChild(reportButton);
       card.appendChild(serialNumber);
       card.appendChild(dateStolen);
@@ -90,10 +89,10 @@ function renderDisplayCardsOnPageLoad(bike) {
         bikeDetails.textContent = "BIKE DETAILS";
         bikeDetails.className = "btn";
         const location = document.createElement("p");
-        // location.setAttribute("")
+
         location.textContent = getCityAndState(bike);
         location.className = "location";
-        // card.appendChild(location);
+
         card.appendChild(reportForm);
         reportForm.appendChild(reportFormLocation);
         reportForm.appendChild(reportFormComments);
@@ -155,14 +154,21 @@ function postNewSighting(sightingObj) {
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
-      if(data.sighting_name === "") {
-        alert(`Success! Spracket thanks you. Your ${data.sighting_location} sighting has been added.`)
-      }else if(data.sighting_name !== "") {
-        alert(`Success! Spracket thanks you, ${data.sighting_name}. Your ${data.sighting_location} sighting has been added.`)
+      if (data.sighting_name === "") {
+        alert(
+          `Success! Spracket thanks you. Your ${data.sighting_location} sighting has been added.`
+        );
+      } else if (data.sighting_name !== "") {
+        alert(
+          `Success! Spracket thanks you, ${data.sighting_name}. Your ${data.sighting_location} sighting has been added.`
+        );
       }
     })
-    .catch((error) =>  {console.error(error);
-      alert("Spracket apologizes! Your sighting could not be added at this time")
+    .catch((error) => {
+      console.error(error);
+      alert(
+        "Spracket apologizes! Your sighting could not be added at this time"
+      );
     });
 }
 
@@ -311,28 +317,17 @@ function initialize(response) {
   zipCode = locationObject.postal_code;
 
   fetch(
-    `https://bikeindex.org:443/api/v3/search?page=1&per_page=50&query=image&location=${zipCode}&distance=50&stolenness=proximity`
+    `https://bikeindex.org:443/api/v3/search?page=1&per_page=100&query=image&location=${zipCode}&distance=${distance}&stolenness=proximity`
   )
     .then((response) => response.json())
     .then((stolenBikes) => {
       bikes = stolenBikes.bikes.filter(
         (x) => x.large_img && x.title && x.description
       );
-      console.log(bikes);
-
-      bikes.length > 25
-        ? bikes.forEach((bike) => renderDisplayCardsOnPageLoad(bike))
-        : (distance = 100);
-      fetch(
-        `https://bikeindex.org:443/api/v3/search?page=1&per_page=100&query=image&location=${zipCode}&distance=${distance}&stolenness=proximity`
-      )
-        .then((response) => response.json())
-        .then((stolenBikes) => {
-          bikes = stolenBikes.bikes.filter(
-            (x) => x.large_img && x.title && x.description
-          );
-          bikes.forEach((bike) => renderDisplayCardsOnPageLoad(bike));
-        });
+      if (!bikes.length) {
+        alert("Try extending the search radius");
+      }
+      bikes.forEach((bike) => renderDisplayCardsOnPageLoad(bike));
     });
 }
 
@@ -451,18 +446,14 @@ const extendSearchRadius = () => {
 
 httpGetAsync(url, initialize);
 
-
-
-
-
 ///////////////////////////////////////////////////////
 /////////////////////////////////////////////////////
 ////                                          ////
 ////  WHEN SOMEONE JACKS IT...               ////
-////     ____                       _       ////    
-////    / ___| _ __  _ __ __ _  ___| | _____| |_ 
+////     ____                       _       ////
+////    / ___| _ __  _ __ __ _  ___| | _____| |_
 ////    \___ \| '_ \| '__/ _` |/ __| |/ / _ | __|
-////     ___) | |_) | | | (_| | (__|   |  __| |_ 
+////     ___) | |_) | | | (_| | (__|   |  __| |_
 ////    |____/| .__/|_|  \__,_|\___|_|\_\___|\__|
 ////          |_|                      ////
 /////////////////////////////////////////////

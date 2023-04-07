@@ -62,6 +62,39 @@
       "title": "2015 Cannondale CAADX",
       "url": "https://bikeindex.org/bikes/1396204",
       "year": 2015
+    },
+    {
+      "sighting_location": "I see it",
+      "sighting_comments": "Yus",
+      "sighting_name": "Dustin ",
+      "date_stolen": 1661310000,
+      "description": "Red with white lettering, black forks and handle bars disc brakes hardly ridden ",
+      "frame_colors": [
+        "Red",
+        "Black",
+        "White"
+      ],
+      "frame_model": "Mens MTN ‘15 XL front shocks , disc brakes, GIANT sticker is white, black bottle holder.",
+      "id": 1380840,
+      "is_stock_img": false,
+      "large_img": "https://files.bikeindex.org/uploads/Pu/626274/large_C39E576A-F17F-4C83-B5F6-2BC5DB91F72C.jpeg",
+      "location_found": null,
+      "manufacturer_name": "Giant",
+      "external_id": null,
+      "registry_name": null,
+      "registry_url": null,
+      "serial": "C94R5929",
+      "status": "stolen",
+      "stolen": true,
+      "stolen_coordinates": [
+        49.72,
+        -113.4
+      ],
+      "stolen_location": "Fort Macleod, T0L 0Z0, CA",
+      "thumb": "https://files.bikeindex.org/uploads/Pu/626274/small_C39E576A-F17F-4C83-B5F6-2BC5DB91F72C.jpeg",
+      "title": "2016 Giant Mens MTN ‘15 XL front shocks , disc b...",
+      "url": "https://bikeindex.org/bikes/1380840",
+      "year": 2016
     }
   ]
 }
