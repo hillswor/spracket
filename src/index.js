@@ -1,4 +1,4 @@
-let apiKey = "34eac09b0f8348b3912237e3325d9bd4";
+let apiKey = key;
 const url = `https://ipgeolocation.abstractapi.com/v1/?api_key=${apiKey}`;
 const gallery = document.querySelector(".gallery");
 const navDropdown = document.querySelector("#search");
@@ -10,8 +10,13 @@ let zipCode;
 function httpGetAsync(url, callback) {
   const xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function () {
-    if (xmlHttp.readyState === 4 && xmlHttp.status === 200)
-      callback(xmlHttp.responseText);
+    if (xmlHttp.readyState === 4) {
+      if (xmlHttp.status === 200) {
+        callback(xmlHttp.responseText);
+      } else {
+        callback(null, new Error("Request failed"));
+      }
+    }
   };
   xmlHttp.open("GET", url, true);
   xmlHttp.send(null);
@@ -57,7 +62,6 @@ function renderDisplayCardsOnPageLoad(bike) {
       card.appendChild(description);
 
       reportButton.addEventListener("click", (e) => {
-        console.log("clicked");
         card.innerHTML = "";
         const returnButton = document.createElement("button");
         returnButton.innerText = "RETURN";
@@ -143,7 +147,6 @@ function createSightingObj(bike, fll, flc, fln) {
 }
 
 function postNewSighting(sightingObj) {
-  console.log(sightingObj);
   fetch("http://localhost:3000/sightings", {
     method: "POST",
     headers: {
@@ -153,7 +156,6 @@ function postNewSighting(sightingObj) {
   })
     .then((res) => res.json())
     .then((data) => {
-      console.log(data);
       if (data.sighting_name === "") {
         alert(
           `Success! Spracket thanks you. Your ${data.sighting_location} sighting has been added.`
@@ -165,7 +167,6 @@ function postNewSighting(sightingObj) {
       }
     })
     .catch((error) => {
-      console.error(error);
       alert(
         "Spracket apologizes! Your sighting could not be added at this time"
       );
@@ -236,7 +237,6 @@ function renderSortedBikes(bike) {
       imageOpacity = false;
 
       reportButton.addEventListener("click", (e) => {
-        console.log("clicked");
         card.innerHTML = "";
         const returnButton = document.createElement("button");
         returnButton.innerText = "RETURN";
@@ -268,10 +268,8 @@ function renderSortedBikes(bike) {
         bikeDetails.textContent = "BIKE DETAILS";
         bikeDetails.className = "btn";
         const location = document.createElement("p");
-        // location.setAttribute("")
         location.textContent = getCityAndState(bike);
         location.className = "location";
-        // card.appendChild(location);
         card.appendChild(reportForm);
         reportForm.appendChild(reportFormLocation);
         reportForm.appendChild(reportFormComments);
@@ -313,22 +311,37 @@ function renderSortedBikes(bike) {
 }
 
 function initialize(response) {
-  locationObject = JSON.parse(response);
-  zipCode = locationObject.postal_code;
-
-  fetch(
-    `https://bikeindex.org:443/api/v3/search?page=1&per_page=100&query=image&location=${zipCode}&distance=${distance}&stolenness=proximity`
-  )
-    .then((response) => response.json())
-    .then((stolenBikes) => {
-      bikes = stolenBikes.bikes.filter(
-        (x) => x.large_img && x.title && x.description
-      );
-      if (!bikes.length) {
-        alert("Try extending the search radius");
-      }
-      bikes.forEach((bike) => renderDisplayCardsOnPageLoad(bike));
-    });
+  if (response === null) {
+    fetch(
+      "https://bikeindex.org:443/api/v3/search?page=1&per_page=25&location=IP&distance=10&stolenness=stolen"
+    )
+      .then((response) => response.json())
+      .then((stolenBikes) => {
+        bikes = stolenBikes.bikes.filter(
+          (x) => x.large_img && x.title && x.description
+        );
+        if (!bikes.length) {
+          alert("Try extending the search radius");
+        }
+        bikes.forEach((bike) => renderDisplayCardsOnPageLoad(bike));
+      });
+  } else {
+    locationObject = JSON.parse(response);
+    zipCode = locationObject.postal_code;
+    fetch(
+      `https://bikeindex.org:443/api/v3/search?page=1&per_page=100&query=image&location=${zipCode}&distance=${distance}&stolenness=proximity`
+    )
+      .then((response) => response.json())
+      .then((stolenBikes) => {
+        bikes = stolenBikes.bikes.filter(
+          (x) => x.large_img && x.title && x.description
+        );
+        if (!bikes.length) {
+          alert("Try extending the search radius");
+        }
+        bikes.forEach((bike) => renderDisplayCardsOnPageLoad(bike));
+      });
+  }
 }
 
 function filterDateStolen(data, byKey) {
@@ -409,22 +422,18 @@ navDropdown2.addEventListener("change", (e) => {
   gallery.innerHTML = "";
 
   if (e.target.value == 10) {
-    console.log("HEY!");
     distance = e.target.value;
     extendSearchRadius();
   }
 
   if (e.target.value == 100) {
-    console.log("HEY!");
     distance = e.target.value;
     extendSearchRadius();
   }
   if (e.target.value == 200) {
-    console.log("YO");
     distance = e.target.value;
     extendSearchRadius();
   } else if (e.target.value == 500) {
-    console.log("BIG 500");
     distance = e.target.value;
     extendSearchRadius();
   }
@@ -439,7 +448,6 @@ const extendSearchRadius = () => {
       bikes = stolenBikes.bikes.filter(
         (x) => x.large_img && x.title && x.description
       );
-      console.log(bikes);
       bikes.forEach((bike) => renderDisplayCardsOnPageLoad(bike));
     });
 };
